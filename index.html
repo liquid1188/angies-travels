@@ -3,24 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Angie's Travels and Tasty Treats — A weekly letter from the road</title>
+<title>Angie's Travels &amp; Tasty Treats — From the Philippines to Phuket</title>
+<meta name="description" content="A weekly letter on cities worth getting lost in, meals worth flying for, and deals worth booking now.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f0f4f9;
-    --paper-deep: #e2eaf3;
-    --paper-warm: #fafcfe;
-    --ink: #0a1f3d;
-    --ink-soft: #3a5478;
-    --ink-faint: #7a8da8;
-    --rule: #b9c8dc;
-    --accent: #1c5fb8;
-    --accent-deep: #0d3b7a;
-    --accent-bright: #4a8fdc;
-    --gold: #d4a843;
-    --coral: #e07a5f;
+    --ink: #1a1f26;
+    --ink-soft: #4a5563;
+    --ink-faint: #8a96a3;
+    --paper: #ffffff;
+    --paper-cream: #faf7f2;
+    --paper-warm: #f3ede4;
+    --line: rgba(26, 31, 38, 0.08);
+    --line-strong: rgba(26, 31, 38, 0.16);
+    --accent: #d4793a;
+    --accent-deep: #a85820;
+    --gold: #c9a04a;
+    --shadow-sm: 0 2px 8px rgba(26, 31, 38, 0.04);
+    --shadow-md: 0 8px 24px rgba(26, 31, 38, 0.08);
+    --shadow-lg: 0 24px 60px rgba(26, 31, 38, 0.16);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Manrope', -apple-system, sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,668 +34,714 @@
   body {
     background: var(--paper);
     color: var(--ink);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--sans);
     font-weight: 300;
-    line-height: 1.6;
+    line-height: 1.65;
     overflow-x: hidden;
-    background-image:
-      radial-gradient(circle at 15% 20%, rgba(28, 95, 184, 0.06) 0%, transparent 55%),
-      radial-gradient(circle at 85% 75%, rgba(74, 143, 220, 0.05) 0%, transparent 55%);
+    -webkit-font-smoothing: antialiased;
   }
 
-  body::before {
-    content: '';
+  img { display: block; max-width: 100%; height: auto; }
+
+  .nav {
     position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.12 0 0 0 0 0.24 0 0 0 0.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.2'/></svg>");
-    opacity: 0.5;
-    mix-blend-mode: multiply;
-    z-index: 1;
-  }
-
-  .serif { font-family: 'Fraunces', serif; }
-  .mono { font-family: 'JetBrains Mono', monospace; }
-
-  .topbar {
-    position: relative;
-    z-index: 10;
-    border-bottom: 1px solid var(--rule);
-    padding: 14px 0;
-    background: var(--paper);
-  }
-  .topbar-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 40px;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+  }
+  .nav.scrolled {
+    background: rgba(255, 255, 255, 0.97);
+    padding: 16px 48px;
+    box-shadow: 0 1px 0 var(--line);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .nav-brand {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: white;
+    transition: color 0.4s ease;
+  }
+  .nav.scrolled .nav-brand { color: var(--ink); }
+  .nav-brand em { font-style: italic; font-weight: 400; }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.92);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  .nav.scrolled .nav-links a { color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .topbar-inner span { display: flex; align-items: center; gap: 8px; }
-  .topbar-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent);
-    animation: pulse 2.5s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.85); }
-  }
-
-  header.masthead {
-    position: relative;
-    z-index: 5;
-    padding: 70px 40px 48px;
-    text-align: center;
-    border-bottom: 3px double var(--accent-deep);
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-
-  .masthead-ornament {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    margin-bottom: 28px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-  .masthead-ornament::before, .masthead-ornament::after {
-    content: '';
-    width: 80px;
-    height: 1px;
-    background: var(--accent);
-    opacity: 0.4;
-  }
-
-  .wordmark {
-    font-family: 'Fraunces', serif;
-    font-weight: 400;
-    font-size: clamp(46px, 8vw, 108px);
-    line-height: 0.95;
-    letter-spacing: -0.035em;
-    color: var(--ink);
-    font-variation-settings: "opsz" 144;
-    margin-bottom: 8px;
-  }
-  .wordmark .amp {
-    font-style: italic;
-    font-weight: 300;
-    color: var(--accent);
-    margin: 0 0.05em;
-  }
-  .wordmark .treats {
-    font-style: italic;
-    font-weight: 300;
-    color: var(--accent-deep);
-  }
-
-  .tagline {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 22px;
-    color: var(--ink-soft);
-    margin-top: 16px;
-  }
-
-  nav.primary {
-    position: relative;
-    z-index: 5;
-    padding: 22px 40px;
-    max-width: 1280px;
-    margin: 0 auto;
-    border-bottom: 1px solid var(--rule);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  nav.primary ul {
-    list-style: none;
-    display: flex;
-    gap: 48px;
-    font-family: 'Fraunces', serif;
-    font-size: 18px;
-    font-weight: 400;
-  }
-  nav.primary a {
-    color: var(--ink);
-    text-decoration: none;
-    position: relative;
-    padding: 4px 0;
-    transition: color 0.3s ease;
-  }
-  nav.primary a:hover { color: var(--accent); }
-  nav.primary a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--accent);
-    transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
-  }
-  nav.primary a:hover::after { width: 100%; }
-
-  .subscribe-btn {
-    background: var(--accent);
-    color: var(--paper-warm);
-    padding: 11px 24px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    border: none;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+    background: transparent;
     cursor: pointer;
     transition: all 0.3s ease;
-    border-radius: 2px;
   }
-  .subscribe-btn:hover {
-    background: var(--accent-deep);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(13, 59, 122, 0.25);
+  .nav-cta:hover {
+    background: white;
+    color: var(--ink);
+    border-color: white;
   }
-
-  main {
-    position: relative;
-    z-index: 5;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 40px;
+  .nav.scrolled .nav-cta {
+    color: var(--ink);
+    border-color: var(--line-strong);
+  }
+  .nav.scrolled .nav-cta:hover {
+    background: var(--ink);
+    color: white;
+    border-color: var(--ink);
   }
 
   .hero {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 64px;
-    padding: 90px 0 70px;
-    align-items: end;
-    border-bottom: 1px solid var(--rule);
+    position: relative;
+    height: 100vh;
+    min-height: 720px;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    background: url('images/hero-bali.jpg') center/cover no-repeat;
+    transform: scale(1.05);
+    animation: kenburns 20s ease-out infinite alternate;
+  }
+  @keyframes kenburns {
+    from { transform: scale(1.05) translate(0, 0); }
+    to { transform: scale(1.12) translate(-1%, -1%); }
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.5) 0%, transparent 30%, transparent 60%, rgba(0,0,0,0.7) 100%);
   }
 
-  .hero-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.25em;
+  .hero-content {
+    position: relative;
+    z-index: 5;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 48px 100px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 28px;
     display: flex;
     align-items: center;
-    gap: 14px;
-    margin-bottom: 28px;
+    gap: 16px;
   }
-  .hero-meta::after {
+  .hero-eyebrow::before {
     content: '';
-    flex: 1;
+    width: 48px;
     height: 1px;
-    background: var(--accent);
-    opacity: 0.4;
+    background: rgba(255, 255, 255, 0.6);
   }
 
   .hero-title {
-    font-family: 'Fraunces', serif;
-    font-weight: 400;
-    font-size: clamp(40px, 5.2vw, 68px);
-    line-height: 1.02;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(56px, 9vw, 132px);
+    line-height: 0.94;
     letter-spacing: -0.025em;
-    color: var(--ink);
-    font-variation-settings: "opsz" 144;
-    margin-bottom: 28px;
+    color: white;
+    max-width: 980px;
+    margin-bottom: 36px;
   }
   .hero-title em {
     font-style: italic;
     font-weight: 300;
-    color: var(--accent);
+    color: rgba(255, 220, 180, 0.95);
   }
 
-  .hero-dek {
-    font-family: 'Fraunces', serif;
-    font-weight: 300;
-    font-style: italic;
-    font-size: 22px;
-    line-height: 1.45;
-    color: var(--ink-soft);
-    max-width: 540px;
-    margin-bottom: 32px;
-  }
-
-  .byline {
+  .hero-meta {
     display: flex;
     align-items: center;
-    gap: 16px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .byline-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-bright) 0%, var(--accent-deep) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--paper-warm);
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 18px;
-    font-weight: 400;
-    box-shadow: 0 2px 8px rgba(13, 59, 122, 0.2);
-  }
-
-  .hero-image {
-    aspect-ratio: 4/5;
-    background-image: url('images/hero-macau.jpeg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-    border-radius: 2px;
-    box-shadow: 0 20px 40px rgba(10, 31, 61, 0.25);
-  }
-  .hero-image::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(10, 31, 61, 0.55) 100%);
-  }
-  .hero-image::after {
-    content: '01 / Macau Tower, after dark';
-    position: absolute;
-    bottom: 18px;
-    left: 18px;
-    right: 18px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--paper-warm);
-    opacity: 0.95;
-    z-index: 2;
-  }
-
-  .section-head {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: end;
-    gap: 32px;
-    padding: 90px 0 44px;
-  }
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    color: var(--accent);
-  }
-  .section-title {
-    font-family: 'Fraunces', serif;
-    font-weight: 400;
-    font-style: italic;
-    font-size: clamp(40px, 5vw, 56px);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-  }
-  .section-link {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 18px;
-    color: var(--ink-soft);
-    text-decoration: none;
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 2px;
-    transition: all 0.3s ease;
-  }
-  .section-link:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-
-  .destinations-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr;
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .article-card {
-    background: var(--paper-warm);
-    padding: 36px 28px;
-    display: flex;
-    flex-direction: column;
-    transition: background 0.4s ease;
-    cursor: pointer;
-    position: relative;
-  }
-  .article-card:hover {
-    background: var(--paper-deep);
-  }
-  .article-card.feature { padding: 36px; }
-
-  .card-image {
-    aspect-ratio: 5/4;
-    margin-bottom: 24px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 2px;
-  }
-  .card-image-1 {
-    background: linear-gradient(135deg, #5da9d4 0%, #1c5fb8 60%, #0d3b7a 100%);
-  }
-  .card-image-1::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='400'><rect width='100%' height='100%' fill='%231c5fb8'/><path d='M0 240 Q 125 220 250 235 T 500 235 L 500 400 L 0 400 Z' fill='%230d3b7a'/><circle cx='400' cy='80' r='30' fill='%23f4e4a8' opacity='0.9'/><rect x='80' y='180' width='40' height='80' fill='%23e8d4a8' opacity='0.7'/><rect x='130' y='160' width='35' height='100' fill='%23d4a843' opacity='0.7'/><rect x='180' y='190' width='40' height='70' fill='%23e8d4a8' opacity='0.6'/><rect x='240' y='170' width='38' height='90' fill='%23d4a843' opacity='0.7'/><rect x='300' y='185' width='42' height='75' fill='%23e8d4a8' opacity='0.65'/></svg>");
-    background-size: cover;
-    mix-blend-mode: multiply;
-    opacity: 0.9;
-  }
-  .card-image-2 {
-    background: linear-gradient(180deg, #4a8fdc 0%, #1c5fb8 100%);
-  }
-  .card-image-2::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='400'><rect width='100%' height='100%' fill='%234a8fdc'/><path d='M0 200 Q 100 150 200 200 T 400 200 T 600 200 L 600 400 L 0 400 Z' fill='%231c5fb8'/><path d='M0 260 Q 100 230 200 260 T 500 260 L 500 400 L 0 400 Z' fill='%230d3b7a' opacity='0.7'/><ellipse cx='250' cy='180' rx='70' ry='12' fill='%23ffffff' opacity='0.5'/></svg>");
-    background-size: cover;
-    mix-blend-mode: multiply;
-    opacity: 0.85;
-  }
-  .card-image-3 {
-    background: linear-gradient(135deg, #d4a843 0%, #b8862a 50%, #8a5e1c 100%);
-  }
-  .card-image-3::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='400'><rect width='100%' height='100%' fill='%23d4a843'/><circle cx='250' cy='200' r='110' fill='%23f4d878'/><circle cx='250' cy='200' r='80' fill='%23e07a5f'/><circle cx='235' cy='185' r='12' fill='%23ffffff' opacity='0.3'/><ellipse cx='270' cy='220' rx='15' ry='6' fill='%23a83d2a' opacity='0.7'/></svg>");
-    background-size: cover;
-    mix-blend-mode: multiply;
-    opacity: 0.85;
-  }
-
-  .card-kicker {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .card-kicker::before {
-    content: '';
-    width: 24px;
-    height: 1px;
-    background: var(--accent);
-  }
-  .card-title {
-    font-family: 'Fraunces', serif;
-    font-weight: 400;
-    font-size: 26px;
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-    margin-bottom: 14px;
-  }
-  .article-card.feature .card-title { font-size: 32px; }
-  .card-dek {
-    font-family: 'Fraunces', serif;
-    font-weight: 300;
-    font-style: italic;
-    font-size: 16px;
-    line-height: 1.5;
-    color: var(--ink-soft);
-    margin-bottom: 20px;
-    flex: 1;
-  }
-  .card-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    padding-top: 16px;
-    border-top: 1px solid var(--rule);
-  }
-
-  .travel-section {
-    padding-bottom: 70px;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .travel-feature {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    padding: 40px 0;
-  }
-  .travel-feature-img {
-    aspect-ratio: 5/4;
-    background: linear-gradient(120deg, #5da9d4 0%, #1c5fb8 50%, #0a1f3d 100%);
-    position: relative;
-    overflow: hidden;
-    border-radius: 2px;
-    box-shadow: 0 12px 30px rgba(10, 31, 61, 0.18);
-  }
-  .travel-feature-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='400'><rect width='100%' height='100%' fill='%231c5fb8'/><path d='M0 200 Q 100 180 200 200 T 400 200 T 600 200 L 600 400 L 0 400 Z' fill='%230d3b7a'/><circle cx='400' cy='80' r='40' fill='%23f4e4a8' opacity='0.85'/><path d='M50 180 L 100 130 L 150 180 Z' fill='%2304173a' opacity='0.6'/><path d='M180 175 L 230 110 L 280 175 Z' fill='%2304173a' opacity='0.7'/><path d='M310 185 L 360 140 L 410 185 Z' fill='%2304173a' opacity='0.6'/><circle cx='150' cy='60' r='1.5' fill='%23ffffff'/><circle cx='220' cy='90' r='2' fill='%23ffffff'/><circle cx='280' cy='50' r='1.5' fill='%23ffffff'/></svg>");
-    background-size: cover;
-    mix-blend-mode: overlay;
-  }
-
-  .travel-secondary {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--rule);
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    margin-top: 32px;
-  }
-
-  .eat-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.6fr;
-    gap: 60px;
-    padding: 40px 0;
-    align-items: start;
-  }
-  .recipe-card {
-    background: linear-gradient(135deg, var(--paper-deep) 0%, var(--paper) 100%);
-    padding: 40px;
-    border: 1px solid var(--rule);
-    position: relative;
-    border-radius: 2px;
-    box-shadow: 0 4px 16px rgba(10, 31, 61, 0.06);
-  }
-  .recipe-card::before {
-    content: '✻';
-    position: absolute;
-    top: 22px;
-    right: 26px;
-    font-size: 22px;
-    color: var(--accent);
-  }
-  .recipe-prep {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid var(--rule);
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .deals-section {
-    padding: 90px 0 70px;
-    border-bottom: 1px solid var(--rule);
-  }
-  .deals-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin-top: 12px;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .deal-card {
-    background: var(--paper-warm);
-    padding: 32px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    transition: background 0.3s ease;
-    cursor: pointer;
-    position: relative;
-  }
-  .deal-card:hover {
-    background: var(--paper-deep);
-  }
-  .deal-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    align-self: flex-start;
-    padding: 5px 11px;
-    border: 1px solid currentColor;
-    border-radius: 2px;
-  }
-  .deal-tag.flight { color: var(--accent); }
-  .deal-tag.hotel { color: var(--accent-deep); }
-  .deal-tag.dining { color: var(--gold); }
-
-  .deal-price {
-    font-family: 'Fraunces', serif;
-    font-size: 42px;
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: var(--accent-deep);
-  }
-  .deal-price small {
-    font-size: 14px;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--ink-faint);
-    margin-left: 6px;
-  }
-  .deal-title {
-    font-family: 'Fraunces', serif;
-    font-size: 19px;
-    font-weight: 400;
-    line-height: 1.25;
-    color: var(--ink);
-  }
-  .deal-detail {
-    font-family: 'Inter', sans-serif;
+    gap: 24px;
+    color: rgba(255, 255, 255, 0.85);
     font-size: 13px;
-    color: var(--ink-soft);
-    line-height: 1.5;
-    flex: 1;
+    font-weight: 300;
   }
-  .deal-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    padding-top: 14px;
-    border-top: 1px solid var(--rule);
+  .hero-meta-divider {
+    width: 1px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.4);
   }
 
-  .newsletter {
-    padding: 110px 0;
-    text-align: center;
-    border-bottom: 1px solid var(--rule);
-    position: relative;
-    background:
-      radial-gradient(ellipse at center, rgba(28, 95, 184, 0.04) 0%, transparent 60%);
-  }
-  .newsletter::before, .newsletter::after {
-    content: '✻';
+  .hero-scroll {
     position: absolute;
-    color: var(--accent);
-    font-size: 26px;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
   }
-  .newsletter::before { left: 12%; }
-  .newsletter::after { right: 12%; }
+  .hero-scroll-line {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.5);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: white;
+    animation: scroll-line 2.4s ease-in-out infinite;
+  }
+  @keyframes scroll-line {
+    0% { top: -40px; }
+    100% { top: 40px; }
+  }
 
-  .newsletter-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .intro {
+    padding: 140px 48px 120px;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .intro-eyebrow {
+    font-family: var(--sans);
     font-size: 11px;
+    font-weight: 500;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 22px;
+    margin-bottom: 32px;
   }
-  .newsletter-title {
-    font-family: 'Fraunces', serif;
+  .intro-text {
+    font-family: var(--serif);
     font-weight: 300;
     font-style: italic;
-    font-size: clamp(32px, 4.5vw, 56px);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
     color: var(--ink);
-    max-width: 720px;
-    margin: 0 auto 24px;
   }
-  .newsletter-dek {
-    font-family: 'Fraunces', serif;
-    font-weight: 300;
-    font-size: 18px;
-    color: var(--ink-soft);
-    max-width: 480px;
-    margin: 0 auto 40px;
-    line-height: 1.55;
+  .intro-text strong {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--accent-deep);
+  }
+  .intro-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--accent);
+    margin: 48px auto 0;
   }
 
+  .section-head {
+    margin-bottom: 64px;
+  }
+  .section-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 760px;
+    margin-bottom: 16px;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--accent-deep);
+  }
+  .section-dek {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 600px;
+  }
+
+  .destinations {
+    padding: 60px 0 140px;
+  }
+  .destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 32px;
+    margin-top: 24px;
+  }
+  .dest-card {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .dest-card-1 { grid-column: span 7; }
+  .dest-card-2 { grid-column: span 5; }
+  .dest-card-3 { grid-column: span 5; }
+  .dest-card-4 { grid-column: span 7; }
+
+  .dest-image {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    margin-bottom: 28px;
+    background: var(--paper-warm);
+    position: relative;
+  }
+  .dest-card-1 .dest-image { aspect-ratio: 16/11; }
+  .dest-card-4 .dest-image { aspect-ratio: 16/11; }
+
+  .dest-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .dest-card:hover .dest-image img {
+    transform: scale(1.06);
+  }
+
+  .dest-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .dest-meta-divider {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--ink-faint);
+  }
+  .dest-meta .country {
+    color: var(--ink-faint);
+  }
+  .dest-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 14px;
+    transition: color 0.3s ease;
+  }
+  .dest-card:hover .dest-title {
+    color: var(--accent-deep);
+  }
+  .dest-dek {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 520px;
+  }
+
+  .feature {
+    background: var(--paper-cream);
+    padding: 140px 0;
+    position: relative;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .feature-image {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+  }
+  .feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .feature-image-tag {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    background: white;
+    padding: 8px 16px;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .feature-content {
+    padding-right: 40px;
+  }
+  .feature-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+  }
+  .feature-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(40px, 4.5vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .feature-title em {
+    font-style: italic;
+    color: var(--accent-deep);
+  }
+  .feature-dek {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-bottom: 36px;
+  }
+  .feature-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 36px;
+  }
+  .feature-stat strong {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 32px;
+    color: var(--ink);
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .feature-stat span {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .feature-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ink);
+    transition: all 0.3s ease;
+  }
+  .feature-cta:hover {
+    color: var(--accent-deep);
+    border-color: var(--accent-deep);
+    gap: 22px;
+  }
+  .feature-cta-arrow {
+    transition: transform 0.3s ease;
+  }
+  .feature-cta:hover .feature-cta-arrow {
+    transform: translateX(4px);
+  }
+
+  .tasty {
+    padding: 140px 0;
+  }
+  .tasty-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 24px;
+  }
+  .tasty-card {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    text-decoration: none;
+    color: inherit;
+  }
+  .tasty-card-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .tasty-card:hover .tasty-card-img {
+    transform: scale(1.06);
+  }
+  .tasty-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, transparent 40%, rgba(0,0,0,0.85) 100%);
+  }
+  .tasty-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px;
+    color: white;
+  }
+  .tasty-card-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 14px;
+  }
+  .tasty-card-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(28px, 3vw, 38px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 12px;
+  }
+  .tasty-card-title em {
+    font-style: italic;
+  }
+  .tasty-card-dek {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.88);
+    max-width: 440px;
+  }
+
+  .deals {
+    background: var(--ink);
+    color: white;
+    padding: 140px 0;
+  }
+  .deals .section-eyebrow { color: var(--gold); }
+  .deals .section-eyebrow::before { background: var(--gold); }
+  .deals .section-title { color: white; }
+  .deals .section-title em { color: var(--gold); font-style: italic; }
+  .deals .section-dek { color: rgba(255, 255, 255, 0.7); }
+  .deals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 32px;
+  }
+  .deal {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 36px 32px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .deal:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+  .deal-tag {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 5px 11px;
+    border: 1px solid rgba(201, 160, 74, 0.4);
+    margin-bottom: 28px;
+  }
+  .deal-price {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: white;
+    margin-bottom: 6px;
+  }
+  .deal-price-unit {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 24px;
+  }
+  .deal-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    color: white;
+    margin-bottom: 14px;
+  }
+  .deal-detail {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 28px;
+  }
+  .deal-meta {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .newsletter {
+    padding: 160px 48px;
+    text-align: center;
+    background: var(--paper-cream);
+    position: relative;
+  }
+  .newsletter-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+  }
+  .newsletter-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(40px, 5.5vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 880px;
+    margin: 0 auto 28px;
+  }
+  .newsletter-dek {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 20px;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin: 0 auto 56px;
+    line-height: 1.55;
+  }
   .newsletter-form {
     display: flex;
-    max-width: 480px;
+    max-width: 540px;
     margin: 0 auto;
-    border-bottom: 1px solid var(--accent-deep);
-    padding-bottom: 4px;
+    background: white;
+    border: 1px solid var(--line-strong);
+    padding: 4px;
   }
   .newsletter-form input {
     flex: 1;
     border: none;
     background: transparent;
-    padding: 12px 0;
-    font-family: 'Fraunces', serif;
-    font-size: 17px;
-    font-style: italic;
+    padding: 18px 24px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
     color: var(--ink);
     outline: none;
   }
@@ -698,321 +749,345 @@
     color: var(--ink-faint);
   }
   .newsletter-form button {
-    background: transparent;
+    background: var(--ink);
+    color: white;
     border: none;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.25em;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--accent-deep);
+    padding: 18px 32px;
     cursor: pointer;
-    padding: 12px 0 12px 24px;
-    transition: color 0.3s ease;
+    transition: background 0.3s ease;
   }
-  .newsletter-form button:hover { color: var(--accent); }
-
+  .newsletter-form button:hover {
+    background: var(--accent-deep);
+  }
   .newsletter-stats {
     display: flex;
     justify-content: center;
-    gap: 60px;
-    margin-top: 56px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    gap: 80px;
+    margin-top: 80px;
+  }
+  .newsletter-stat {
+    text-align: center;
+  }
+  .newsletter-stat strong {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 44px;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .newsletter-stat span {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--ink-faint);
   }
-  .newsletter-stats span strong {
-    display: block;
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 32px;
-    color: var(--accent-deep);
-    letter-spacing: 0;
-    text-transform: none;
-    margin-bottom: 4px;
-  }
 
   footer {
-    padding: 60px 40px 40px;
-    max-width: 1280px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 5;
+    background: var(--ink);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 100px 48px 40px;
   }
-  .footer-top {
+  .footer-grid {
+    max-width: 1400px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 60px;
-    padding-bottom: 48px;
-    border-bottom: 1px solid var(--rule);
+    gap: 64px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
-  .footer-brand {
-    font-family: 'Fraunces', serif;
+  .footer-brand-name {
+    font-family: var(--serif);
+    font-weight: 400;
     font-size: 28px;
-    font-style: italic;
-    margin-bottom: 14px;
+    color: white;
+    margin-bottom: 18px;
     line-height: 1.15;
   }
-  .footer-brand .amp { color: var(--accent); }
+  .footer-brand-name em { font-style: italic; color: var(--gold); }
   .footer-tagline {
-    font-family: 'Fraunces', serif;
+    font-family: var(--serif);
     font-style: italic;
-    font-size: 15px;
-    color: var(--ink-soft);
-    line-height: 1.5;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.55;
+    max-width: 320px;
   }
   .footer-col h4 {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
-    font-weight: 500;
+    color: var(--gold);
+    margin-bottom: 24px;
   }
   .footer-col ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
   }
   .footer-col a {
-    font-family: 'Fraunces', serif;
-    font-size: 15px;
-    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
     transition: color 0.3s ease;
   }
-  .footer-col a:hover { color: var(--accent); }
-  .footer-bot {
-    padding-top: 24px;
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 32px;
     display: flex;
     justify-content: space-between;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-  }
-
-  @media (max-width: 920px) {
-    .topbar-inner { padding: 0 24px; }
-    nav.primary { padding: 18px 24px; }
-    nav.primary ul { gap: 24px; font-size: 16px; }
-    main { padding: 0 24px; }
-    .hero { grid-template-columns: 1fr; gap: 36px; padding: 50px 0 40px; }
-    .destinations-grid { grid-template-columns: 1fr; }
-    .travel-feature, .eat-grid { grid-template-columns: 1fr; gap: 32px; }
-    .travel-secondary, .deals-grid { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .newsletter-stats { gap: 32px; flex-wrap: wrap; }
-    .newsletter::before, .newsletter::after { display: none; }
-    nav.primary ul { display: none; }
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
   }
 
   .reveal {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+                transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .reveal.in-view {
     opacity: 1;
     transform: translateY(0);
   }
-  .stagger-1 { transition-delay: 0.05s; }
-  .stagger-2 { transition-delay: 0.15s; }
-  .stagger-3 { transition-delay: 0.25s; }
+
+  @media (max-width: 1024px) {
+    .destinations-grid > * { grid-column: span 12 !important; }
+    .feature-grid { grid-template-columns: 1fr; gap: 48px; }
+    .feature-content { padding-right: 0; }
+    .tasty-grid, .deals-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .newsletter-stats { gap: 32px; flex-wrap: wrap; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 16px 24px; }
+    .nav.scrolled { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .container { padding: 0 24px; }
+    .hero-content { padding: 0 24px 60px; }
+    .intro { padding: 80px 24px 60px; }
+    .destinations, .feature, .tasty, .deals { padding: 80px 0; }
+    .newsletter { padding: 80px 24px; }
+    footer { padding: 60px 24px 32px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; gap: 12px; }
+    .newsletter-form { flex-direction: column; padding: 0; border: none; gap: 12px; }
+    .newsletter-form input { background: white; border: 1px solid var(--line-strong); }
+  }
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div class="topbar-inner">
-    <span><span class="topbar-dot"></span>Issue 14 — Saturday, April 25</span>
-    <span>Currently in: Macau &nbsp;·&nbsp; 78°F &nbsp;·&nbsp; clear night</span>
-  </div>
-</div>
-
-<header class="masthead">
-  <div class="masthead-ornament">est. 2026 — postcards from everywhere</div>
-  <h1 class="wordmark">Angie's Travels <span class="amp">&amp;</span> <span class="treats">Tasty Treats</span></h1>
-  <p class="tagline">From the Philippines to Phuket.</p>
-</header>
-
-<nav class="primary">
-  <ul>
+<nav class="nav" id="nav">
+  <div class="nav-brand">Angie's Travels <em>&amp;</em> Tasty Treats</div>
+  <ul class="nav-links">
     <li><a href="#destinations">Destinations</a></li>
-    <li><a href="#travel">Slow travel</a></li>
-    <li><a href="#eat">Tasty treats</a></li>
+    <li><a href="#feature">Slow travel</a></li>
+    <li><a href="#tasty">Tasty treats</a></li>
     <li><a href="#deals">Deals</a></li>
-    <li><a href="#about">About Angie</a></li>
+    <li><a href="#newsletter">The letter</a></li>
   </ul>
-  <button class="subscribe-btn">Subscribe</button>
+  <button class="nav-cta">Subscribe</button>
 </nav>
 
-<main>
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Issue 14 — Saturday, April 25</div>
+    <h1 class="hero-title">From the Philippines<br>to <em>Phuket</em>.</h1>
+    <div class="hero-meta">
+      <span>By Angie</span>
+      <div class="hero-meta-divider"></div>
+      <span>Currently in Bali</span>
+      <div class="hero-meta-divider"></div>
+      <span>2,840 readers</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
 
-  <section class="hero">
-    <div class="reveal">
-      <div class="hero-meta">This week's letter — № 014</div>
-      <h2 class="hero-title">A quiet hour by the water in <em>Macau</em>, with the tower lit up like a postcard.</h2>
-      <p class="hero-dek">From the Philippines to here in two short flights. Where to sit, what to eat after, and the egg tart that ruins all other egg tarts.</p>
-      <div class="byline">
-        <div class="byline-avatar">A</div>
-        <div>By Angie &nbsp;·&nbsp; 7 min read &nbsp;·&nbsp; April 25</div>
+<section class="intro">
+  <div class="intro-eyebrow">— A weekly letter —</div>
+  <p class="intro-text">Cities worth getting lost in, meals worth flying for, and <strong>deals worth booking now.</strong> One sent every Friday morning, from wherever the wifi works.</p>
+  <div class="intro-rule"></div>
+</section>
+
+<section class="destinations container" id="destinations">
+  <div class="section-head reveal">
+    <div class="section-eyebrow">Destinations · No. 01</div>
+    <h2 class="section-title">Places worth <em>the flight</em>.</h2>
+    <p class="section-dek">A handful of cities, islands, and detours from the last six months on the road. None of them are secret. All of them are worth it.</p>
+  </div>
+
+  <div class="destinations-grid">
+    <a class="dest-card dest-card-1 reveal" href="#">
+      <div class="dest-image"><img src="images/santorini.jpg" alt="Santorini at golden hour"></div>
+      <div class="dest-meta"><span>Coastline</span><div class="dest-meta-divider"></div><span class="country">Santorini, Greece</span></div>
+      <h3 class="dest-title">Skip Oia. Go to Pyrgos instead.</h3>
+      <p class="dest-dek">The same volcanic sunset, a quarter of the crowd, and a tomato fritter at Selene that you'll be telling people about for years.</p>
+    </a>
+
+    <a class="dest-card dest-card-2 reveal" href="#">
+      <div class="dest-image"><img src="images/kyoto.jpg" alt="Kyoto torii gates"></div>
+      <div class="dest-meta"><span>City guide</span><div class="dest-meta-divider"></div><span class="country">Kyoto, Japan</span></div>
+      <h3 class="dest-title">Three days in Kyoto, off the bus route.</h3>
+      <p class="dest-dek">Fushimi Inari before sunrise, kaiseki in a back-alley counter, and the bamboo grove that isn't Arashiyama.</p>
+    </a>
+
+    <a class="dest-card dest-card-3 reveal" href="#">
+      <div class="dest-image"><img src="images/marrakech.jpg" alt="Marrakech medina"></div>
+      <div class="dest-meta"><span>Markets</span><div class="dest-meta-divider"></div><span class="country">Marrakech, Morocco</span></div>
+      <h3 class="dest-title">How to actually navigate the souks.</h3>
+      <p class="dest-dek">Three rules, two phrases, and the riad rooftop where the call to prayer hits different at sunrise.</p>
+    </a>
+
+    <a class="dest-card dest-card-4 reveal" href="#">
+      <div class="dest-image"><img src="images/paris.jpg" alt="Paris rooftops"></div>
+      <div class="dest-meta"><span>Feature</span><div class="dest-meta-divider"></div><span class="country">Paris, France</span></div>
+      <h3 class="dest-title">A Paris weekend, planned by a girl who keeps coming back.</h3>
+      <p class="dest-dek">The bistro that's been there since 1957, the bookstore that closes at the wrong time, and the pâtisserie that justifies the entire trip.</p>
+    </a>
+  </div>
+</section>
+
+<section class="feature" id="feature">
+  <div class="container">
+    <div class="feature-grid">
+      <div class="feature-image reveal">
+        <span class="feature-image-tag">Feature story</span>
+        <img src="images/amalfi.jpg" alt="Amalfi Coast cliffs">
       </div>
-    </div>
-    <div class="hero-image reveal stagger-1"></div>
-  </section>
-
-  <section id="destinations">
-    <div class="section-head">
-      <div class="section-num">№ 01</div>
-      <h2 class="section-title">Destinations.</h2>
-      <a class="section-link" href="#">All places →</a>
-    </div>
-    <div class="destinations-grid reveal">
-      <article class="article-card feature">
-        <div class="card-image card-image-1"></div>
-        <div class="card-kicker">City guide · Italy</div>
-        <h3 class="card-title">Three days in Bologna, with a stop for handmade pasta.</h3>
-        <p class="card-dek">The food capital nobody mentions until they've been. Where to eat tortellini in brodo, why the porticoes matter, and the gelateria you walk past three times before noticing.</p>
-        <div class="card-meta">3 days · 7 stops · €90/day</div>
-      </article>
-      <article class="article-card">
-        <div class="card-image card-image-2"></div>
-        <div class="card-kicker">Coast · Greece</div>
-        <h3 class="card-title">The Cycladic island that's still cheap.</h3>
-        <p class="card-dek">Folegandros has the white houses, the cliffs, and the sunset, without the cruise ships. Two ferries and a cheese pie away.</p>
-        <div class="card-meta">$$ · ferry · 4 days minimum</div>
-      </article>
-      <article class="article-card">
-        <div class="card-image card-image-3"></div>
-        <div class="card-kicker">Markets · Marrakech</div>
-        <h3 class="card-title">How to actually navigate the souks.</h3>
-        <p class="card-dek">Three rules, two phrases, and the riad rooftop where the call to prayer hits different at sunrise.</p>
-        <div class="card-meta">5 days · medina-only · spring best</div>
-      </article>
-    </div>
-  </section>
-
-  <section id="travel" class="travel-section">
-    <div class="section-head">
-      <div class="section-num">№ 02</div>
-      <h2 class="section-title">Slow travel.</h2>
-      <a class="section-link" href="#">All routes →</a>
-    </div>
-
-    <div class="travel-feature reveal">
-      <div class="travel-feature-img"></div>
-      <div>
-        <div class="card-kicker">Feature · Norway</div>
-        <h3 class="card-title" style="font-size: 42px; line-height: 1.05; margin-bottom: 20px;">The slow train from Oslo to Bergen, in May.</h3>
-        <p class="card-dek" style="font-size: 18px; max-width: 480px;">Seven hours through fjords, snow, and tiny stations where the conductor still waves. The window seat that matters, the sandwich worth bringing, and where to break the trip if you have an extra day.</p>
-        <div class="card-meta" style="border-top: none; padding-top: 0; margin-top: 24px;">7 hours · €60 second class · book Vy direct</div>
-      </div>
-    </div>
-
-    <div class="travel-secondary">
-      <article class="article-card">
-        <div class="card-kicker">Weekend · Portugal</div>
-        <h3 class="card-title">Two days in Sintra, the Lisbon you didn't plan for.</h3>
-        <p class="card-dek">Pena Palace at opening, Quinta da Regaleira before the buses, and a tiled bakery that's been open since 1862.</p>
-        <div class="card-meta">40 minutes from Lisbon</div>
-      </article>
-      <article class="article-card">
-        <div class="card-kicker">Cities · Vietnam</div>
-        <h3 class="card-title">Choose Hoi An over Hanoi.</h3>
-        <p class="card-dek">Lantern-lit at night, a beach in the morning, tailors who'll have your jacket ready in three days. The cooking class is worth it.</p>
-        <div class="card-meta">5–7 days · $50/day · airport: DAD</div>
-      </article>
-    </div>
-  </section>
-
-  <section id="eat">
-    <div class="section-head">
-      <div class="section-num">№ 03</div>
-      <h2 class="section-title">Tasty treats.</h2>
-      <a class="section-link" href="#">All recipes →</a>
-    </div>
-
-    <div class="eat-grid">
-      <div class="recipe-card reveal">
-        <div class="card-kicker" style="margin-bottom: 18px;">Travel-day recipe</div>
-        <h3 class="card-title" style="font-size: 28px;">A salmon poke bowl that takes ten minutes.</h3>
-        <p class="card-dek">Yum yum sauce first. Sriracha after. Peanuts last. Eat with chopsticks before it cools.</p>
-        <div class="recipe-prep">
-          <span>Serves 1</span>
-          <span>10 min</span>
-          <span>$11</span>
+      <div class="feature-content reveal">
+        <div class="feature-eyebrow">No. 02 — Italy, slowly</div>
+        <h2 class="feature-title">Driving the Amalfi Coast in <em>shoulder season</em>.</h2>
+        <p class="feature-dek">When the buses thin out, the lemons are heaviest, and the family-run trattoria you read about actually has a table. A four-day route, hotel by hotel, with the rental car you actually want.</p>
+        <div class="feature-stats">
+          <div class="feature-stat"><strong>4</strong><span>days</span></div>
+          <div class="feature-stat"><strong>€140</strong><span>per night</span></div>
+          <div class="feature-stat"><strong>May</strong><span>best month</span></div>
         </div>
-      </div>
-      <div class="reveal stagger-1">
-        <div class="card-kicker">Bakeries &amp; cafes</div>
-        <h3 class="card-title" style="font-size: 36px; line-height: 1.1; margin-bottom: 20px;">Five pastry shops worth the detour, in five different countries.</h3>
-        <p class="card-dek" style="font-size: 17px;">A canelé in Bordeaux. A pastel de nata in Belém. A kouign-amann in Quimper. The cardamom bun that ruins all other cardamom buns. And the croissant in Paris that isn't where you think.</p>
-        <div class="card-meta">Five spots · five countries · all walkable</div>
+        <a class="feature-cta" href="#">
+          Read the route
+          <span class="feature-cta-arrow">→</span>
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="deals" class="deals-section">
-    <div class="section-head">
-      <div class="section-num">№ 04</div>
-      <h2 class="section-title">Deals worth a click.</h2>
-      <a class="section-link" href="#">Archive →</a>
+<section class="tasty container" id="tasty">
+  <div class="section-head reveal">
+    <div class="section-eyebrow">Tasty treats · No. 03</div>
+    <h2 class="section-title">Meals worth <em>flying for</em>.</h2>
+    <p class="section-dek">The dishes that ruined every other version of themselves. Where to eat them, and how much they actually cost.</p>
+  </div>
+
+  <div class="tasty-grid">
+    <a class="tasty-card reveal" href="#">
+      <div class="tasty-card-img" style="background-image: url('images/food-pasta.jpg')"></div>
+      <div class="tasty-card-overlay"></div>
+      <div class="tasty-card-content">
+        <div class="tasty-card-eyebrow">Bologna · Pasta</div>
+        <h3 class="tasty-card-title">A bowl of <em>tagliatelle al ragù</em> at Trattoria di Via Serra.</h3>
+        <p class="tasty-card-dek">Hand-cut, slow-simmered, and €14. Walk fifteen minutes from the station, sit at the counter, order it without thinking.</p>
+      </div>
+    </a>
+
+    <a class="tasty-card reveal" href="#">
+      <div class="tasty-card-img" style="background-image: url('images/food-tacos.jpg')"></div>
+      <div class="tasty-card-overlay"></div>
+      <div class="tasty-card-content">
+        <div class="tasty-card-eyebrow">Mexico City · Street</div>
+        <h3 class="tasty-card-title">The <em>al pastor</em> at El Vilsito, after midnight.</h3>
+        <p class="tasty-card-dek">A mechanic's garage by day, a taquería by night. The pineapple is on the trompo. The salsa verde is the right answer.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="deals" id="deals">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Deals · No. 04</div>
+      <h2 class="section-title">Worth a <em>click</em> this week.</h2>
+      <p class="section-dek">Curated each Friday. Affiliate-disclosed where applicable. Nothing here unless I'd book it myself.</p>
     </div>
-    <p style="font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-soft); font-size: 17px; max-width: 600px; margin-bottom: 8px;">Curated each Friday. Affiliate-disclosed where applicable. Nothing here unless I'd book it myself.</p>
-    <div class="deals-grid reveal">
-      <article class="deal-card">
-        <span class="deal-tag flight">Flight</span>
+
+    <div class="deals-grid">
+      <div class="deal reveal">
+        <span class="deal-tag">Flight</span>
+        <div class="deal-price">$389</div>
+        <div class="deal-price-unit">Round-trip from JFK</div>
         <h3 class="deal-title">Lisbon, May through September</h3>
-        <div class="deal-price">$389<small>/ rt JFK</small></div>
-        <p class="deal-detail">TAP Portugal. Midweek departures. Two checked bags included on the standard fare. Book by Sunday.</p>
+        <p class="deal-detail">TAP Portugal. Midweek departures. Two checked bags included. Book by Sunday.</p>
         <div class="deal-meta">Expires Sun · 4 days left</div>
-      </article>
-      <article class="deal-card">
-        <span class="deal-tag hotel">Hotel</span>
-        <h3 class="deal-title">Hotel Belmond, Lake Como</h3>
-        <div class="deal-price">$340<small>/ night midweek</small></div>
-        <p class="deal-detail">Usually north of $600. The shoulder-season rate runs through May. Lakefront view is worth the upgrade.</p>
+      </div>
+
+      <div class="deal reveal">
+        <span class="deal-tag">Hotel</span>
+        <div class="deal-price">$340</div>
+        <div class="deal-price-unit">Per night, midweek</div>
+        <h3 class="deal-title">Belmond Hotel Cipriani, Venice</h3>
+        <p class="deal-detail">Usually north of $700. Shoulder-season rate runs through May. Lagoon-view upgrade worth it.</p>
         <div class="deal-meta">Through May 31</div>
-      </article>
-      <article class="deal-card">
-        <span class="deal-tag dining">Dining</span>
+      </div>
+
+      <div class="deal reveal">
+        <span class="deal-tag">Dining</span>
+        <div class="deal-price">€95</div>
+        <div class="deal-price-unit">Lunch tasting menu</div>
         <h3 class="deal-title">Osteria Francescana, Modena</h3>
-        <div class="deal-price">€95<small>/ lunch tasting</small></div>
-        <p class="deal-detail">The Bottura lunch menu without the dinner price. Nine courses, wine pairing for €60 more. Book three months out.</p>
-        <div class="deal-meta">Reservations open · 14 spots/sitting</div>
-      </article>
+        <p class="deal-detail">The Bottura lunch menu without the dinner price. Nine courses. Wine pairing for €60 more. Book three months out.</p>
+        <div class="deal-meta">Reservations open · 14 spots</div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="newsletter">
-    <div class="newsletter-eyebrow">— The letter —</div>
-    <h2 class="newsletter-title">One destination, one recipe, one deal worth your time.</h2>
-    <p class="newsletter-dek">Friday mornings. Free. From a girl with too many passport stamps and an opinion on every airline meal.</p>
-    <form class="newsletter-form" onsubmit="event.preventDefault();">
-      <input type="email" placeholder="your@email.com" />
-      <button type="submit">Subscribe →</button>
-    </form>
-    <div class="newsletter-stats">
-      <span><strong>2,840</strong>readers</span>
-      <span><strong>14</strong>letters</span>
-      <span><strong>61%</strong>open rate</span>
-    </div>
-  </section>
+<section class="newsletter" id="newsletter">
+  <div class="newsletter-eyebrow">— The letter —</div>
+  <h2 class="newsletter-title">Friday mornings, from wherever I am.</h2>
+  <p class="newsletter-dek">One destination, one meal, one deal worth your time. Free, forever. From a girl with too many passport stamps and an opinion on every airline meal.</p>
+  <form class="newsletter-form" onsubmit="event.preventDefault();">
+    <input type="email" placeholder="your@email.com" />
+    <button type="submit">Subscribe</button>
+  </form>
+  <div class="newsletter-stats">
+    <div class="newsletter-stat"><strong>2,840</strong><span>Readers</span></div>
+    <div class="newsletter-stat"><strong>14</strong><span>Letters sent</span></div>
+    <div class="newsletter-stat"><strong>61%</strong><span>Open rate</span></div>
+    <div class="newsletter-stat"><strong>43</strong><span>Countries</span></div>
+  </div>
+</section>
 
-</main>
-
-<footer id="about">
-  <div class="footer-top">
+<footer>
+  <div class="footer-grid">
     <div>
-      <div class="footer-brand">Angie's Travels<br><span class="amp">&amp;</span> Tasty Treats</div>
-      <p class="footer-tagline">A weekly letter on what's worth eating, where to go next, and the deals that don't waste your time.</p>
+      <div class="footer-brand-name">Angie's Travels<br><em>&amp;</em> Tasty Treats</div>
+      <p class="footer-tagline">A weekly letter on cities worth getting lost in, meals worth flying for, and deals worth booking now.</p>
     </div>
     <div class="footer-col">
       <h4>Read</h4>
@@ -1020,40 +1095,47 @@
         <li><a href="#">Destinations</a></li>
         <li><a href="#">Slow travel</a></li>
         <li><a href="#">Tasty treats</a></li>
-        <li><a href="#">Deals</a></li>
+        <li><a href="#">Deals archive</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Follow</h4>
       <ul>
         <li><a href="#">Instagram</a></li>
-        <li><a href="#">RSS</a></li>
         <li><a href="#">Substack</a></li>
+        <li><a href="#">RSS</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>About</h4>
       <ul>
         <li><a href="#">About Angie</a></li>
-        <li><a href="#">Affiliate disclosures</a></li>
+        <li><a href="#">Affiliate policy</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bot">
+  <div class="footer-bottom">
     <span>© 2026 Angie's Travels &amp; Tasty Treats</span>
-    <span>Made between flights</span>
+    <span>Made between flights · Photos via Unsplash</span>
   </div>
 </footer>
 
 <script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
