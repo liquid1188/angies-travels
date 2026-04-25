@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angie's Travels &amp; Tasty Treats — A weekly letter from the road</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f0f4f9;
+    --paper-deep: #e2eaf3;
+    --paper-mist: #d8e2ee;
+    --ink: #0a1929;
+    --ink-soft: #2c4a6b;
+    --ink-faint: #5a7a9a;
+    --rule: #b8cce0;
+    --accent: #1e5b9e;
+    --accent-deep: #0d3a6d;
+    --accent-bright: #2e85d8;
+    --gold: #c89642;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(30, 91, 158, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 30%, rgba(46, 133, 216, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 100%, rgba(13, 58, 109, 0.05) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.1 0 0 0 0 0.16 0 0 0 0.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.18'/></svg>");
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    z-index: 1;
+  }
+
+  .serif { font-family: 'Fraunces', serif; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  .topbar {
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 0;
+    background: rgba(240, 244, 249, 0.8);
+    backdrop-filter: blur(8px);
+  }
+  .topbar-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .topbar-inner span { display: flex; align-items: center; gap: 8px; }
+  .topbar-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2.5s ease-in-out infinite;
+    box-shadow: 0 0 0 0 var(--accent);
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(30, 91, 158, 0.5); }
+    50% { opacity: 0.7; transform: scale(0.85); box-shadow: 0 0 0 8px rgba(30, 91, 158, 0); }
+  }
+
+  header.masthead {
+    position: relative;
+    z-index: 5;
+    padding: 70px 40px 50px;
+    text-align: center;
+    border-bottom: 3px double var(--ink);
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .masthead-ornament {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 20px;
+    color: var(--accent);
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .masthead-ornament::before, .masthead-ornament::after {
+    content: '';
+    width: 80px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.4;
+  }
+
+  .wordmark {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 8.5vw, 124px);
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    font-variation-settings: "opsz" 144;
+    margin-bottom: 8px;
+  }
+  .wordmark .amp {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+    font-size: 0.7em;
+    margin: 0 0.05em;
+    vertical-align: 0.05em;
+  }
+  .wordmark-sub {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(28px, 4.5vw, 52px);
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  .tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+  }
+  .tagline::before, .tagline::after {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  nav.primary {
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    padding: 18px 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(240, 244, 249, 0.92);
+    backdrop-filter: blur(12px);
+  }
+  nav.primary ul {
+    list-style: none;
+    display: flex;
+    gap: 44px;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 400;
+  }
+  nav.primary a {
+    color: var(--ink);
+    text-decoration: none;
+    position: relative;
+    padding: 4px 0;
+    transition: color 0.3s ease;
+  }
+  nav.primary a:hover { color: var(--accent); }
+  nav.primary a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  nav.primary a:hover::after { width: 100%; }
+
+  .subscribe-btn {
+    background: var(--accent);
+    color: var(--paper);
+    padding: 10px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+  .subscribe-btn:hover {
+    background: var(--accent-deep);
+    transform: translateY(-1px);
+  }
+
+  main {
+    position: relative;
+    z-index: 5;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 64px;
+    padding: 80px 0 60px;
+    align-items: end;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .hero-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .hero-meta::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.4;
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(40px, 5.2vw, 68px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    font-variation-settings: "opsz" 144;
+    margin-bottom: 28px;
+  }
+  .hero-title em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+
+  .hero-dek {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin-bottom: 32px;
+  }
+
+  .byline {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .byline-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5a8bc7 0%, #1e5b9e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--paper);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 400;
+    box-shadow: 0 2px 8px rgba(13, 58, 109, 0.2);
+  }
+
+  .hero-image {
+    aspect-ratio: 4/5;
+    background:
+      linear-gradient(135deg, rgba(13,58,109,0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at 30% 20%, #6ba8d8 0%, #1e5b9e 40%, #0a1929 100%);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px -20px rgba(13, 58, 109, 0.4);
+  }
+  .hero-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='500' viewBox='0 0 400 500'><defs><linearGradient id='sky' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23c8dff0'/><stop offset='0.4' stop-color='%236ba8d8'/><stop offset='1' stop-color='%231e5b9e'/></linearGradient><linearGradient id='sea' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%231e5b9e'/><stop offset='1' stop-color='%230a1929'/></linearGradient></defs><rect width='400' height='280' fill='url(%23sky)'/><rect y='280' width='400' height='220' fill='url(%23sea)'/><circle cx='320' cy='100' r='28' fill='%23f4e8c4' opacity='0.85'/><path d='M0 280 Q 100 270 200 280 T 400 280' stroke='%23ffffff' stroke-width='1.2' fill='none' opacity='0.4'/><path d='M0 320 Q 80 312 160 320 T 320 320 T 400 320' stroke='%23ffffff' stroke-width='1' fill='none' opacity='0.3'/><path d='M0 360 Q 120 354 240 360 T 400 360' stroke='%23ffffff' stroke-width='0.8' fill='none' opacity='0.25'/><path d='M0 400 Q 80 396 160 400 T 320 400 T 400 400' stroke='%23ffffff' stroke-width='0.6' fill='none' opacity='0.2'/><polygon points='80,260 120,200 160,260' fill='%230d3a6d' opacity='0.6'/><polygon points='160,265 220,180 280,265' fill='%230d3a6d' opacity='0.7'/><polygon points='240,262 290,210 340,262' fill='%230d3a6d' opacity='0.55'/><path d='M50 295 L 50 245 L 70 285 L 75 240 L 85 295' stroke='%23ffffff' stroke-width='0.8' fill='none' opacity='0.7'/></svg>");
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: multiply;
+    opacity: 0.95;
+  }
+  .hero-image::after {
+    content: '01 / Cinque Terre, golden hour';
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--paper);
+    opacity: 0.95;
+  }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: end;
+    gap: 32px;
+    padding: 80px 0 40px;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent-deep);
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(40px, 5vw, 56px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .section-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .section-link {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  .section-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .destinations-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .article-card {
+    background: var(--paper);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.4s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .article-card:hover {
+    background: var(--paper-deep);
+  }
+  .article-card.feature { padding: 36px; }
+
+  .card-image {
+    aspect-ratio: 5/4;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-image-1 {
+    background:
+      radial-gradient(circle at 70% 30%, #6ba8d8 0%, #0d3a6d 80%);
+  }
+  .card-image-1::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 400'><defs><linearGradient id='g1' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23c8dff0'/><stop offset='0.5' stop-color='%236ba8d8'/><stop offset='1' stop-color='%231e5b9e'/></linearGradient></defs><rect width='500' height='250' fill='url(%23g1)'/><rect y='250' width='500' height='150' fill='%230d3a6d'/><polygon points='100,250 180,140 260,250' fill='%23ffffff' opacity='0.85'/><polygon points='220,250 300,100 380,250' fill='%23ffffff' opacity='0.95'/><polygon points='340,250 410,170 480,250' fill='%23ffffff' opacity='0.8'/><polygon points='180,250 240,180 280,250' fill='%23a8c8e0' opacity='0.6'/><circle cx='400' cy='80' r='24' fill='%23f4e8c4'/><path d='M0 290 Q 125 285 250 290 T 500 290' stroke='%23ffffff' stroke-width='1' fill='none' opacity='0.3'/></svg>");
+    background-size: cover;
+    mix-blend-mode: multiply;
+    opacity: 0.9;
+  }
+  .card-image-2 {
+    background:
+      radial-gradient(circle at 50% 60%, #f4d4a8 0%, #c89642 80%);
+  }
+  .card-image-2::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 400'><rect width='500' height='400' fill='%23e8c896'/><circle cx='250' cy='200' r='130' fill='%23f4e4c8'/><circle cx='250' cy='200' r='100' fill='%23d4a574'/><circle cx='250' cy='200' r='75' fill='%23c89642'/><circle cx='220' cy='180' r='12' fill='%231e5b9e'/><circle cx='280' cy='190' r='14' fill='%231e5b9e'/><circle cx='245' cy='220' r='10' fill='%231e5b9e'/><circle cx='265' cy='235' r='11' fill='%231e5b9e'/><circle cx='235' cy='240' r='9' fill='%231e5b9e'/><circle cx='275' cy='170' r='8' fill='%231e5b9e'/></svg>");
+    background-size: cover;
+    mix-blend-mode: multiply;
+    opacity: 0.9;
+  }
+  .card-image-3 {
+    background:
+      linear-gradient(180deg, #5a8bc7 0%, #0a1929 100%);
+  }
+  .card-image-3::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 400'><rect width='500' height='200' fill='%231e5b9e'/><rect y='200' width='500' height='200' fill='%230a1929'/><path d='M0 280 Q 125 270 250 280 T 500 280 L 500 400 L 0 400 Z' fill='%230d3a6d'/><circle cx='100' cy='80' r='2' fill='%23ffffff' opacity='0.8'/><circle cx='200' cy='50' r='1.5' fill='%23ffffff' opacity='0.6'/><circle cx='350' cy='90' r='2.5' fill='%23ffffff' opacity='0.9'/><circle cx='420' cy='40' r='1.5' fill='%23ffffff' opacity='0.7'/><circle cx='80' cy='130' r='1' fill='%23ffffff' opacity='0.5'/><circle cx='280' cy='110' r='1.5' fill='%23ffffff' opacity='0.6'/><circle cx='450' cy='160' r='2' fill='%23ffffff' opacity='0.8'/><path d='M0 250 L 80 180 L 160 250 Z' fill='%23ffffff' opacity='0.4'/><path d='M180 250 L 280 150 L 380 250 Z' fill='%23ffffff' opacity='0.5'/><path d='M360 250 L 440 200 L 500 250 Z' fill='%23ffffff' opacity='0.35'/></svg>");
+    background-size: cover;
+    mix-blend-mode: screen;
+    opacity: 0.85;
+  }
+
+  .card-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-kicker::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 14px;
+    transition: color 0.3s ease;
+  }
+  .article-card:hover .card-title {
+    color: var(--accent);
+  }
+  .article-card.feature .card-title { font-size: 32px; }
+  .card-dek {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  .card-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .map-section {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .map-strip {
+    background: linear-gradient(180deg, #0d3a6d 0%, #0a1929 100%);
+    padding: 60px 48px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    color: var(--paper);
+    box-shadow: 0 20px 60px -30px rgba(13, 58, 109, 0.6);
+  }
+  .map-strip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 200'><g fill='none' stroke='%23ffffff' stroke-width='0.5' opacity='0.15'><circle cx='150' cy='80' r='6'/><circle cx='150' cy='80' r='14'/><circle cx='280' cy='120' r='6'/><circle cx='280' cy='120' r='14'/><circle cx='420' cy='60' r='6'/><circle cx='420' cy='60' r='14'/><circle cx='560' cy='110' r='6'/><circle cx='560' cy='110' r='14'/><circle cx='680' cy='80' r='6'/><circle cx='680' cy='80' r='14'/><path d='M150 80 Q 215 100 280 120 T 420 60 T 560 110 T 680 80' stroke-dasharray='4 4'/></g></svg>");
+    background-size: cover;
+    background-position: center;
+  }
+  .map-strip-content {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+  }
+  .map-strip h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 36px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    color: var(--paper);
+  }
+  .map-strip p {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: rgba(240, 244, 249, 0.8);
+    max-width: 480px;
+    line-height: 1.55;
+  }
+  .map-stats {
+    display: flex;
+    gap: 36px;
+  }
+  .map-stat {
+    text-align: center;
+  }
+  .map-stat strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 38px;
+    color: var(--paper);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .map-stat span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(240, 244, 249, 0.6);
+  }
+
+  .treats-section {
+    padding-bottom: 40px;
+  }
+  .treats-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: 40px 0;
+  }
+  .treats-feature-img {
+    aspect-ratio: 5/4;
+    background:
+      linear-gradient(120deg, #f4e4c8 0%, #c89642 50%, #8b5a2c 100%);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px -15px rgba(13, 58, 109, 0.3);
+  }
+  .treats-feature-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 400'><rect width='500' height='400' fill='%23e8c896'/><circle cx='250' cy='200' r='160' fill='%23a86b3a' opacity='0.2'/><circle cx='250' cy='200' r='140' fill='%23f4d4a8'/><circle cx='250' cy='200' r='120' fill='%23e8b878'/><circle cx='250' cy='200' r='90' fill='%23d49858'/><g fill='%231e5b9e'><circle cx='220' cy='170' r='4'/><circle cx='270' cy='180' r='4'/><circle cx='250' cy='200' r='5'/><circle cx='230' cy='220' r='4'/><circle cx='275' cy='225' r='4'/><circle cx='200' cy='195' r='3'/><circle cx='295' cy='200' r='3'/></g><g fill='%2327500a' opacity='0.7'><ellipse cx='200' cy='160' rx='6' ry='3' transform='rotate(-30 200 160)'/><ellipse cx='300' cy='160' rx='6' ry='3' transform='rotate(30 300 160)'/></g></svg>");
+    background-size: cover;
+    mix-blend-mode: multiply;
+    opacity: 0.9;
+  }
+
+  .treats-secondary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .recipe-section {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .recipe-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .recipe-card {
+    background: var(--paper-deep);
+    padding: 40px;
+    border: 1px solid var(--rule);
+    position: relative;
+    box-shadow: 0 4px 16px -8px rgba(13, 58, 109, 0.15);
+  }
+  .recipe-card::before {
+    content: '✻';
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 20px;
+    color: var(--accent);
+  }
+  .recipe-prep {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .deals-section {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .deals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 20px;
+  }
+  .deal-card {
+    background: var(--paper);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .deal-card:hover {
+    background: var(--paper-deep);
+    transform: translateY(-2px);
+  }
+  .deal-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    align-self: flex-start;
+    padding: 5px 11px;
+    border: 1px solid currentColor;
+  }
+  .deal-tag.flight { color: var(--accent); }
+  .deal-tag.hotel { color: var(--accent-deep); }
+  .deal-tag.dining { color: var(--gold); }
+
+  .deal-price {
+    font-family: 'Fraunces', serif;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .deal-price small {
+    font-size: 14px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink-faint);
+    margin-left: 6px;
+  }
+  .deal-title {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  .deal-detail {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .deal-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .newsletter {
+    padding: 100px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    background: linear-gradient(180deg, transparent 0%, var(--paper-deep) 50%, transparent 100%);
+    margin: 0 -40px;
+  }
+  .newsletter::before, .newsletter::after {
+    content: '✻';
+    position: absolute;
+    color: var(--accent);
+    font-size: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .newsletter::before { left: 12%; }
+  .newsletter::after { right: 12%; }
+
+  .newsletter-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: 20px;
+  }
+  .newsletter-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 720px;
+    margin: 0 auto 24px;
+  }
+  .newsletter-dek {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 0 auto 40px;
+    line-height: 1.55;
+  }
+
+  .newsletter-form {
+    display: flex;
+    max-width: 480px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 4px;
+  }
+  .newsletter-form input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 12px 0;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--ink);
+    outline: none;
+  }
+  .newsletter-form input::placeholder {
+    color: var(--ink-faint);
+  }
+  .newsletter-form button {
+    background: transparent;
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    cursor: pointer;
+    padding: 12px 0 12px 24px;
+    transition: color 0.3s ease;
+  }
+  .newsletter-form button:hover { color: var(--accent-deep); }
+
+  .newsletter-stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 56px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .newsletter-stats span strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 36px;
+    color: var(--accent);
+    letter-spacing: 0;
+    text-transform: none;
+    margin-bottom: 4px;
+  }
+
+  footer {
+    padding: 60px 40px 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .footer-brand {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-style: italic;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .footer-brand .amp {
+    color: var(--accent);
+    font-weight: 300;
+  }
+  .footer-tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .footer-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-col a {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bot {
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 920px) {
+    .topbar-inner { padding: 0 24px; }
+    nav.primary { padding: 16px 24px; }
+    nav.primary ul { gap: 20px; font-size: 15px; }
+    main { padding: 0 24px; }
+    .hero { grid-template-columns: 1fr; gap: 36px; padding: 50px 0 40px; }
+    .destinations-grid { grid-template-columns: 1fr; }
+    .treats-feature, .recipe-grid { grid-template-columns: 1fr; gap: 32px; }
+    .treats-secondary, .deals-grid { grid-template-columns: 1fr; }
+    .map-strip-content { grid-template-columns: 1fr; }
+    .map-strip { padding: 40px 28px; }
+    .map-stats { gap: 24px; justify-content: space-between; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .newsletter-stats { gap: 32px; flex-wrap: wrap; }
+    .newsletter::before, .newsletter::after { display: none; }
+    nav.primary ul { display: none; }
+    .masthead-ornament::before, .masthead-ornament::after { width: 30px; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .stagger-1 { transition-delay: 0.05s; }
+  .stagger-2 { transition-delay: 0.15s; }
+  .stagger-3 { transition-delay: 0.25s; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span><span class="topbar-dot"></span>Vol. 02 — Saturday, April 25</span>
+    <span>Currently in Lisbon &nbsp;·&nbsp; 71°F &nbsp;·&nbsp; clear skies</span>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="masthead-ornament">est. 2026</div>
+  <h1 class="wordmark">Angie's Travels<span class="amp">&amp;</span></h1>
+  <div class="wordmark-sub">Tasty Treats</div>
+  <div class="tagline">A weekly letter from the road</div>
+</header>
+
+<nav class="primary">
+  <ul>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#treats">Tasty treats</a></li>
+    <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#deals">Deals</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <button class="subscribe-btn">Subscribe</button>
+</nav>
+
+<main>
+
+  <section class="hero">
+    <div class="reveal">
+      <div class="hero-meta">This week's letter — № 014</div>
+      <h2 class="hero-title">Why Cinque Terre is best <em>at sunset</em>, with a glass of Sciacchetrà.</h2>
+      <p class="hero-dek">Five villages, one cliffside path, and the apricot wine that turns the whole coast gold for an hour. A field guide for the unrushed.</p>
+      <div class="byline">
+        <div class="byline-avatar">A</div>
+        <div>Angie Marlowe &nbsp;·&nbsp; 8 min read &nbsp;·&nbsp; April 25</div>
+      </div>
+    </div>
+    <div class="hero-image reveal stagger-1"></div>
+  </section>
+
+  <section id="destinations">
+    <div class="section-head">
+      <div class="section-num">№ 01</div>
+      <h2 class="section-title">Destinations <em>worth the flight.</em></h2>
+      <a class="section-link" href="#">All postcards →</a>
+    </div>
+    <div class="destinations-grid reveal">
+      <article class="article-card feature">
+        <div class="card-image card-image-1"></div>
+        <div class="card-kicker">Field guide · Switzerland</div>
+        <h3 class="card-title">A weekend in Lauterbrunnen, the valley of seventy-two waterfalls.</h3>
+        <p class="card-dek">Where to wake up, which gondola to take first, and the rösti that makes the whole trip worth booking.</p>
+        <div class="card-meta">3 days · CHF 240/day · airport: ZRH</div>
+      </article>
+      <article class="article-card">
+        <div class="card-image card-image-2"></div>
+        <div class="card-kicker">City notes · Morocco</div>
+        <h3 class="card-title">Marrakech in three meals and one quiet courtyard.</h3>
+        <p class="card-dek">The medina in small doses, a riad with a working fountain, and where to get tagine that isn't for tourists.</p>
+        <div class="card-meta">$$ · 4 days · spring best</div>
+      </article>
+      <article class="article-card">
+        <div class="card-image card-image-3"></div>
+        <div class="card-kicker">Off-season · Iceland</div>
+        <h3 class="card-title">Reykjavík in February, when the lights are doing their thing.</h3>
+        <p class="card-dek">Aurora forecasts, a hot dog stand worth the line, and the geothermal pool the locals actually use.</p>
+        <div class="card-meta">5 days · midweek cheaper</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="map-section">
+    <div class="map-strip reveal">
+      <div class="map-strip-content">
+        <div>
+          <h3>Fourteen countries, twenty-six cities, one suitcase that fits in the overhead.</h3>
+          <p>Following along is the easiest way to plan your next trip without doing any of the homework yourself. Maps, packing lists, and the unhinged opinions you came here for.</p>
+        </div>
+        <div class="map-stats">
+          <div class="map-stat"><strong>14</strong><span>countries</span></div>
+          <div class="map-stat"><strong>26</strong><span>cities</span></div>
+          <div class="map-stat"><strong>112</strong><span>meals</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="treats" class="treats-section">
+    <div class="section-head">
+      <div class="section-num">№ 02</div>
+      <h2 class="section-title">Tasty treats <em>I keep thinking about.</em></h2>
+      <a class="section-link" href="#">Full menu →</a>
+    </div>
+
+    <div class="treats-feature reveal">
+      <div class="treats-feature-img"></div>
+      <div>
+        <div class="card-kicker">Feature · Lisbon</div>
+        <h3 class="card-title" style="font-size: 42px; line-height: 1.05; margin-bottom: 20px;">The pastel de nata that made me change my flight.</h3>
+        <p class="card-dek" style="font-size: 18px; max-width: 480px;">Manteigaria gets the press but there's a tiny bakery in Alfama that has been doing this for sixty years. The crust shatters. The custard is barely set. There is a queue for a reason.</p>
+        <div class="card-meta" style="border-top: none; padding-top: 0; margin-top: 24px;">€1.40 each · cash preferred · before 10am</div>
+      </div>
+    </div>
+
+    <div class="treats-secondary">
+      <article class="article-card">
+        <div class="card-kicker">Cocktails · Mexico City</div>
+        <h3 class="card-title">Five mezcal bars in Roma Norte, ranked by ambiance.</h3>
+        <p class="card-dek">Where the bartender knows the difference, where the music is honest, and where you'll end up at one in the morning.</p>
+        <div class="card-meta">$$$ · evenings only · reservations help</div>
+      </article>
+      <article class="article-card">
+        <div class="card-kicker">Markets · Tokyo</div>
+        <h3 class="card-title">Tsukiji at six in the morning, when the tuna is the show.</h3>
+        <p class="card-dek">Skip the inner market — it's gone — and head straight for the outer stalls. The egg sandwich at 6:15. The sushi counter at 7. Coffee third.</p>
+        <div class="card-meta">2 hours · cash only · dress warm</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="recipes" class="recipe-section">
+    <div class="section-head">
+      <div class="section-num">№ 03</div>
+      <h2 class="section-title">Recipes <em>from the road.</em></h2>
+      <a class="section-link" href="#">All recipes →</a>
+    </div>
+
+    <div class="recipe-grid">
+      <div class="recipe-card reveal">
+        <div class="card-kicker" style="margin-bottom: 18px;">This week's recipe</div>
+        <h3 class="card-title" style="font-size: 28px;">A salmon poke bowl that travels well.</h3>
+        <p class="card-dek">Yum yum sauce first. Sriracha after. Peanuts last. Eat with chopsticks before it cools, ideally on a balcony.</p>
+        <div class="recipe-prep">
+          <span>Serves 1</span>
+          <span>10 min</span>
+          <span>$11</span>
+        </div>
+      </div>
+      <div class="reveal stagger-1">
+        <div class="card-kicker">Souvenirs that taste good</div>
+        <h3 class="card-title" style="font-size: 36px; line-height: 1.1; margin-bottom: 20px;">Seven things to bring home in your suitcase, customs willing.</h3>
+        <p class="card-dek" style="font-size: 17px;">The olive oil from a particular farm in Andalusia, the salt from Maras, the chili paste from Seoul. The list keeps growing.</p>
+        <div class="card-meta">Seven items · all checked-bag legal · most under $30</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="deals" class="deals-section">
+    <div class="section-head">
+      <div class="section-num">№ 04</div>
+      <h2 class="section-title">Deals <em>worth a click.</em></h2>
+      <a class="section-link" href="#">Archive →</a>
+    </div>
+    <p style="font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-soft); font-size: 17px; max-width: 600px; margin-bottom: 8px;">Hand-picked every Friday. Affiliate-disclosed where applicable. Nothing here unless I'd book it myself.</p>
+    <div class="deals-grid reveal">
+      <article class="deal-card">
+        <span class="deal-tag flight">Flight</span>
+        <h3 class="deal-title">Lisbon, May through September</h3>
+        <div class="deal-price">$389<small>/ rt JFK</small></div>
+        <p class="deal-detail">TAP Portugal. Midweek departures. Two checked bags included on the standard fare. Book by Sunday.</p>
+        <div class="deal-meta">Expires Sun · 4 days left</div>
+      </article>
+      <article class="deal-card">
+        <span class="deal-tag hotel">Hotel</span>
+        <h3 class="deal-title">Borgo Egnazia, Puglia</h3>
+        <div class="deal-price">€340<small>/ night, May</small></div>
+        <p class="deal-detail">Shoulder-season rates before the August crowd shows up. Pool, spa, and the kind of breakfast you remember for years.</p>
+        <div class="deal-meta">Through May 31</div>
+      </article>
+      <article class="deal-card">
+        <span class="deal-tag dining">Dining</span>
+        <h3 class="deal-title">Le Bernardin, NYC</h3>
+        <div class="deal-price">$98<small>/ prix fixe lunch</small></div>
+        <p class="deal-detail">Three courses at the bar. The same kitchen, half the price of dinner. Reservations open three weeks out.</p>
+        <div class="deal-meta">Tuesday through Thursday</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="newsletter-eyebrow">— The letter —</div>
+    <h2 class="newsletter-title">One destination, one dish, one deal worth booking.</h2>
+    <p class="newsletter-dek">Friday mornings. Free. From wherever I happen to be.</p>
+    <form class="newsletter-form" onsubmit="event.preventDefault();">
+      <input type="email" placeholder="your@email.com" />
+      <button type="submit">Subscribe →</button>
+    </form>
+    <div class="newsletter-stats">
+      <span><strong>2,847</strong>readers</span>
+      <span><strong>14</strong>letters</span>
+      <span><strong>61%</strong>open rate</span>
+    </div>
+  </section>
+
+</main>
+
+<footer id="about">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Angie's Travels<span class="amp"> &amp; </span>Tasty Treats</div>
+      <p class="footer-tagline">A weekly letter from the road on where to go next, what to eat when you get there, and the deals that don't waste your time.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Read</h4>
+      <ul>
+        <li><a href="#">Destinations</a></li>
+        <li><a href="#">Tasty treats</a></li>
+        <li><a href="#">Recipes</a></li>
+        <li><a href="#">Deals</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">RSS</a></li>
+        <li><a href="#">Substack</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <ul>
+        <li><a href="#">The writer</a></li>
+        <li><a href="#">Affiliate disclosures</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© 2026 Angie Marlowe · currently somewhere with wifi</span>
+    <span>Made on a Tuesday</span>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
