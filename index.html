@@ -7,18 +7,16 @@
 <meta name="description" content="A weekly travel and food letter. Slow itineraries, honest reviews, deals worth your time.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #fafaf7;
-    --paper-warm: #f4f1ea;
-    --ink: #1a1a1a;
-    --ink-soft: #4a4a48;
-    --ink-faint: #8a8782;
-    --rule: rgba(26,26,26,0.12);
-    --rule-strong: rgba(26,26,26,0.2);
-    --accent: #1c4a8a;
-    --accent-deep: #0a2c5a;
+    --paper: #f7f5f0;
+    --paper-deep: #ede9df;
+    --ink: #1a1612;
+    --ink-soft: #4a463f;
+    --ink-faint: #8a8478;
+    --rule: rgba(26,22,18,0.14);
+    --accent: #1f3a68;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,1141 +25,927 @@
   body {
     background: var(--paper);
     color: var(--ink);
-    font-family: 'Inter', -apple-system, sans-serif;
-    font-weight: 300;
-    line-height: 1.65;
-    font-size: 16px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.55;
+    font-size: 19px;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
-
   a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
 
   .nav {
-    position: sticky;
-    top: 0;
+    position: fixed;
+    top: 0; left: 0; right: 0;
     z-index: 100;
-    background: rgba(250, 250, 247, 0.96);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--rule);
-    transition: all 0.3s ease;
-  }
-  .nav-inner {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 18px 48px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 32px;
+    transition: all 0.4s ease;
+    mix-blend-mode: difference;
+    color: #f7f5f0;
   }
-  .nav-left {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
+  .nav-brand {
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .nav-brand em { font-style: italic; }
+  .nav-menu {
+    font-size: 13px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--ink-soft);
-    font-weight: 400;
+    font-weight: 500;
+    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 10px;
   }
-  .nav-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent);
-    animation: pulse 2.5s ease-in-out infinite;
+  .nav-menu::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.3s ease;
   }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-  .nav-brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    color: var(--ink);
-    white-space: nowrap;
-  }
-  .nav-brand em {
-    font-style: italic;
-    color: var(--accent);
-    font-weight: 400;
-  }
-  .nav-right {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 36px;
-  }
-  .nav-right ul {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-  }
-  .nav-right a {
-    color: var(--ink-soft);
-    transition: color 0.2s ease;
-    padding: 6px 0;
-    border-bottom: 1px solid transparent;
-  }
-  .nav-right a:hover {
-    color: var(--ink);
-    border-bottom-color: var(--accent);
-  }
-  .nav-cta {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    padding: 9px 18px;
-    background: var(--ink);
-    color: var(--paper);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-  .nav-cta:hover {
-    background: var(--accent);
-  }
+  .nav-menu:hover::before { width: 36px; }
 
-  .hero {
-    position: relative;
+  .cover {
     height: 100vh;
-    min-height: 680px;
-    max-height: 900px;
+    min-height: 720px;
+    position: relative;
     overflow: hidden;
-    margin-top: -1px;
   }
-  .hero-img {
+  .cover-img {
     position: absolute;
     inset: 0;
-    background-image: url('images/macau-hero.jpeg');
-    background-size: cover;
-    background-position: center 30%;
-    transform: scale(1.05);
-    animation: kenburns 20s ease-in-out infinite alternate;
+    background: url('images/macau-hero.jpeg') center 30% / cover no-repeat;
+    transform: scale(1.04);
+    animation: kenburns 30s ease-in-out infinite alternate;
   }
   @keyframes kenburns {
-    0% { transform: scale(1.05) translate(0, 0); }
-    100% { transform: scale(1.12) translate(-1%, -1%); }
+    0% { transform: scale(1.04) translate(0, 0); }
+    100% { transform: scale(1.12) translate(-1.5%, -1%); }
   }
-  .hero-overlay {
+  .cover::after {
+    content: '';
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0.55) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 25%, transparent 60%, rgba(0,0,0,0.5) 100%);
   }
-  .hero-content {
+  .cover-text {
     position: absolute;
     inset: 0;
+    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 48px;
-    max-width: 1440px;
-    margin: 0 auto;
-    color: #fff;
+    padding: 48px 64px 96px;
   }
-  .hero-eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.32em;
+  .cover-volume {
+    font-size: 12px;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
-    font-weight: 400;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    opacity: 0.95;
+    margin-bottom: 32px;
+    font-weight: 500;
+    opacity: 0.92;
   }
-  .hero-eyebrow::before {
-    content: '';
-    width: 36px;
-    height: 1px;
-    background: rgba(255,255,255,0.7);
-  }
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
+  .cover-title {
+    font-size: clamp(56px, 9vw, 152px);
     font-weight: 300;
-    font-size: clamp(52px, 8vw, 124px);
-    line-height: 0.98;
-    letter-spacing: -0.02em;
-    margin-bottom: 20px;
+    line-height: 0.94;
+    letter-spacing: -0.025em;
+    margin-bottom: 28px;
     max-width: 14ch;
   }
-  .hero-title em {
-    font-style: italic;
-    font-weight: 300;
-  }
-  .hero-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(20px, 2.4vw, 30px);
-    max-width: 580px;
-    line-height: 1.4;
-    margin-bottom: 60px;
-    opacity: 0.95;
-  }
-  .hero-meta {
+  .cover-title em { font-style: italic; }
+  .cover-byline {
+    font-size: 13px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+    opacity: 0.85;
     display: flex;
     align-items: center;
-    gap: 32px;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.22);
-    max-width: 580px;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    opacity: 0.9;
+    gap: 18px;
   }
-  .hero-meta-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .hero-meta-stat strong {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 28px;
-    letter-spacing: 0;
-    text-transform: none;
-  }
-  .hero-credit {
-    position: absolute;
-    bottom: 24px;
-    right: 32px;
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.65);
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-  }
-  .scroll-cue {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%);
-    animation: scrollcue 2.5s ease-in-out infinite;
-  }
-  @keyframes scrollcue {
-    0%, 100% { opacity: 0.3; transform: translateX(-50%) translateY(-8px); }
-    50% { opacity: 1; transform: translateX(-50%) translateY(8px); }
-  }
-
-  main {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 48px;
-  }
-
-  .section-intro {
-    padding: 140px 0 60px;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 80px;
-    align-items: end;
-    border-bottom: 1px solid var(--rule);
-  }
-  .section-num {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .section-num::before {
+  .cover-byline::before {
     content: '';
     width: 32px;
     height: 1px;
-    background: var(--accent);
+    background: currentColor;
   }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: clamp(48px, 6vw, 88px);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-  }
-  .section-title em {
-    font-style: italic;
-    font-weight: 300;
-  }
-  .section-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 22px;
-    line-height: 1.5;
-    color: var(--ink-soft);
-    max-width: 540px;
-  }
-
-  .destinations {
-    padding: 80px 0 120px;
-  }
-  .dest-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 24px;
-    margin-bottom: 48px;
-  }
-  .dest-card {
-    grid-column: span 6;
-    cursor: pointer;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-  .dest-card-feature { grid-column: span 7; grid-row: span 2; }
-  .dest-card-tall { grid-column: span 5; grid-row: span 2; }
-  .dest-card-third { grid-column: span 4; }
-  .dest-card-half { grid-column: span 6; }
-  .dest-card-twothird { grid-column: span 8; }
-
-  .dest-img-wrap {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 22px;
-    background: var(--paper-warm);
-  }
-  .dest-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-  .dest-card:hover .dest-img {
-    transform: scale(1.04);
-  }
-  .dest-img-3-2 { aspect-ratio: 3/2; }
-  .dest-img-4-5 { aspect-ratio: 4/5; }
-  .dest-img-5-4 { aspect-ratio: 5/4; }
-  .dest-img-tall { aspect-ratio: 3/4; }
-  .dest-img-wide { aspect-ratio: 16/9; }
-
-  .dest-num {
+  .cover-credit {
     position: absolute;
-    top: 18px;
-    left: 18px;
-    font-family: 'Inter', sans-serif;
+    bottom: 48px;
+    right: 48px;
     font-size: 10px;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.95);
-    z-index: 2;
+    color: rgba(255,255,255,0.7);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-weight: 500;
   }
-  .dest-meta-overlay {
+  .cover-pagenum {
     position: absolute;
-    bottom: 16px;
-    right: 18px;
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
-    z-index: 2;
-  }
-  .dest-kicker {
-    font-family: 'Inter', sans-serif;
+    bottom: 48px;
+    left: 64px;
     font-size: 11px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
-    font-weight: 400;
-  }
-  .dest-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    margin-bottom: 12px;
-    max-width: 28ch;
-  }
-  .dest-card-feature .dest-title { font-size: 44px; max-width: 18ch; }
-  .dest-card-third .dest-title { font-size: 24px; }
-  .dest-dek {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 17px;
-    line-height: 1.45;
-    color: var(--ink-soft);
-    max-width: 44ch;
-    margin-bottom: 16px;
-  }
-  .dest-card-feature .dest-dek { font-size: 19px; }
-  .dest-meta {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-  .dest-meta::after {
-    content: 'Read →';
-    margin-left: auto;
-    color: var(--accent);
-    transition: transform 0.3s ease;
-  }
-  .dest-card:hover .dest-meta::after {
-    transform: translateX(4px);
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
   }
 
-  .feature-essay {
-    padding: 120px 0;
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: 7fr 5fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .feature-essay-img {
+  .contents {
+    padding: 200px 0 240px;
     position: relative;
-    aspect-ratio: 4/5;
-    overflow: hidden;
-    background: var(--paper-warm);
   }
-  .feature-essay-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1.5s ease;
+  .contents-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 48px;
   }
-  .feature-essay:hover .feature-essay-img img { transform: scale(1.03); }
-  .feature-essay-text { padding: 24px 0; }
-  .feature-essay h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: clamp(40px, 4.8vw, 64px);
-    line-height: 1.04;
-    letter-spacing: -0.02em;
-    margin: 18px 0 28px;
-  }
-  .feature-essay h2 em { font-style: italic; }
-  .feature-essay-dek {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 22px;
-    line-height: 1.5;
-    color: var(--ink-soft);
-    margin-bottom: 32px;
-    max-width: 44ch;
-  }
-  .feature-essay-meta {
-    display: flex;
-    gap: 28px;
-    padding-top: 20px;
-    border-top: 1px solid var(--rule);
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.18em;
+  .contents-label {
+    font-size: 12px;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
-    color: var(--ink-faint);
-  }
-  .feature-essay-meta strong {
-    display: block;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 26px;
-    color: var(--ink);
-    letter-spacing: 0;
-    text-transform: none;
-    margin-bottom: 4px;
-  }
-
-  .eat-section {
-    padding: 140px 0 100px;
-  }
-  .eat-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 32px;
-    margin-top: 48px;
-  }
-  .eat-feature {
-    grid-column: span 8;
-  }
-  .eat-feature .dest-img-wrap { aspect-ratio: 16/10; }
-  .eat-feature .dest-img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 1.2s ease;
-  }
-  .eat-feature:hover img { transform: scale(1.03); }
-  .eat-feature .dest-title { font-size: 38px; max-width: 20ch; }
-  .recipe-side {
-    grid-column: span 4;
-    background: var(--paper-warm);
-    padding: 40px 36px;
-    align-self: start;
-    border: 1px solid var(--rule);
-  }
-  .recipe-side .dest-img-wrap {
-    aspect-ratio: 1/1;
-    margin-bottom: 24px;
-    margin-top: -16px;
-    margin-left: -36px;
-    margin-right: -36px;
-  }
-  .recipe-side .dest-img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
-  }
-  .recipe-side .dest-title { font-size: 26px; margin-top: 8px; }
-  .recipe-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    padding-top: 20px;
-    margin-top: 20px;
-    border-top: 1px solid var(--rule);
-  }
-  .recipe-stats div {
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 80px;
     text-align: center;
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
+  }
+  .toc-item {
+    display: grid;
+    grid-template-columns: 60px 1fr 80px;
+    gap: 32px;
+    align-items: baseline;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+    transition: padding 0.4s ease;
+  }
+  .toc-item:first-of-type { border-top: 1px solid var(--rule); }
+  .toc-item:hover { padding-left: 12px; }
+  .toc-num {
+    font-size: 14px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--ink-faint);
+    font-weight: 500;
   }
-  .recipe-stats strong {
-    display: block;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 22px;
+  .toc-title {
+    font-size: 28px;
+    line-height: 1.25;
     color: var(--ink);
-    letter-spacing: 0;
-    text-transform: none;
-    margin-bottom: 4px;
   }
-
-  .deals-section {
-    padding: 100px 0 120px;
-    background: var(--paper-warm);
-    margin: 0 -48px;
-    padding-left: 48px;
-    padding-right: 48px;
-  }
-  .deals-inner {
-    max-width: 1440px;
-    margin: 0 auto;
-  }
-  .deals-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-    margin-top: 56px;
-  }
-  .deal-card {
-    background: var(--paper);
-    padding: 28px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--rule);
-  }
-  .deal-card:hover {
-    border-color: var(--ink);
-    transform: translateY(-4px);
-  }
-  .deal-img-wrap {
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    margin: -28px -28px 24px;
-    background: var(--paper-warm);
-  }
-  .deal-img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 1s ease;
-  }
-  .deal-card:hover .deal-img-wrap img { transform: scale(1.05); }
-  .deal-tag {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    align-self: flex-start;
-    padding: 5px 11px;
-    color: var(--accent-deep);
-    border: 1px solid var(--accent-deep);
-    border-radius: 2px;
-    margin-bottom: 16px;
-    font-weight: 400;
-  }
-  .deal-tag.hotel { color: #5a3a1a; border-color: #5a3a1a; }
-  .deal-tag.dining { color: #6b1e3e; border-color: #6b1e3e; }
-  .deal-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 1.2;
-    color: var(--ink);
-    margin-bottom: 14px;
-  }
-  .deal-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 38px;
-    font-weight: 300;
-    line-height: 1;
-    color: var(--accent-deep);
-    margin-bottom: 14px;
-  }
-  .deal-price small {
+  .toc-title em { font-style: italic; }
+  .toc-page {
     font-size: 13px;
-    font-style: italic;
-    color: var(--ink-faint);
-    margin-left: 6px;
-    font-family: 'Cormorant Garamond', serif;
-  }
-  .deal-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--ink-soft);
-    margin-bottom: 18px;
-    flex: 1;
-  }
-  .deal-meta {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--ink-faint);
-    padding-top: 16px;
-    border-top: 1px solid var(--rule);
+    text-align: right;
+    font-weight: 500;
+    font-feature-settings: "tnum";
   }
 
-  .newsletter {
-    padding: 160px 48px;
-    text-align: center;
-    background: var(--ink);
-    color: var(--paper);
-    margin: 0 -48px;
+  .story {
+    padding: 160px 0;
     position: relative;
+  }
+  .story-fullbleed {
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    aspect-ratio: 16/9;
     overflow: hidden;
-  }
-  .newsletter::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(28,74,138,0.3) 0%, transparent 60%);
-  }
-  .newsletter-inner {
+    margin-bottom: 80px;
     position: relative;
+  }
+  .story-fullbleed img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .story-fullbleed-caption {
+    position: absolute;
+    bottom: 24px;
+    left: 64px;
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    opacity: 0.85;
+  }
+
+  .story-body {
     max-width: 720px;
     margin: 0 auto;
+    padding: 0 48px;
   }
-  .newsletter-eyebrow {
-    font-family: 'Inter', sans-serif;
+  .story-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    margin-bottom: 56px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .story-meta-left, .story-meta-right { display: flex; gap: 24px; }
+  .story-section {
+    color: var(--accent);
+  }
+  .story-headline {
+    font-size: clamp(48px, 6.4vw, 88px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin-bottom: 40px;
+    max-width: 16ch;
+  }
+  .story-headline em { font-style: italic; }
+  .story-dek {
+    font-size: 26px;
+    line-height: 1.45;
+    font-weight: 300;
+    color: var(--ink-soft);
+    margin-bottom: 56px;
+    max-width: 32ch;
+    font-style: italic;
+  }
+  .story-lead {
+    font-size: 22px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+  .story-lead::first-letter {
+    font-size: 64px;
+    float: left;
+    line-height: 0.85;
+    margin: 8px 12px 0 0;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .story-body p {
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    color: var(--ink-soft);
+  }
+
+  .story-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin: 64px 0 0;
+    padding: 40px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .story-stat {
+    text-align: center;
+  }
+  .story-stat strong {
+    display: block;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 36px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .story-stat span {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+  }
+
+  .pair-section {
+    padding: 160px 0;
+    background: var(--paper-deep);
+    margin: 0;
+    width: 100%;
+  }
+  .pair-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .pair-img {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+  }
+  .pair-img img { width: 100%; height: 100%; object-fit: cover; }
+  .pair-text .story-meta { margin-bottom: 32px; padding-bottom: 12px; }
+  .pair-text .story-headline { font-size: clamp(40px, 4.8vw, 64px); margin-bottom: 28px; }
+  .pair-text .story-dek { font-size: 22px; margin-bottom: 32px; }
+  .pair-text .story-stats { margin-top: 40px; gap: 24px; }
+  .pair-text .story-stat strong { font-size: 30px; }
+
+  .triptych {
+    padding: 200px 0 160px;
+  }
+  .triptych-intro {
+    max-width: 720px;
+    margin: 0 auto 100px;
+    padding: 0 48px;
+    text-align: center;
+  }
+  .triptych-label {
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+  .triptych-title {
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 28px;
+    letter-spacing: -0.02em;
+  }
+  .triptych-title em { font-style: italic; }
+  .triptych-dek {
+    font-size: 22px;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    max-width: 28ch;
+    margin: 0 auto;
+  }
+  .triptych-grid {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+  .triptych-card { cursor: pointer; }
+  .triptych-img {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .triptych-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .triptych-card:hover .triptych-img img { transform: scale(1.05); }
+  .triptych-num {
     font-size: 11px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
+    color: var(--accent);
+    margin-bottom: 14px;
+    font-weight: 500;
   }
-  .newsletter-eyebrow::before, .newsletter-eyebrow::after {
-    content: '';
-    width: 40px;
-    height: 1px;
-    background: rgba(255,255,255,0.3);
+  .triptych-card-title {
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
   }
-  .newsletter-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: clamp(40px, 5.5vw, 72px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 28px;
-  }
-  .newsletter-title em { font-style: italic; }
-  .newsletter-dek {
-    font-family: 'Cormorant Garamond', serif;
+  .triptych-card-title em { font-style: italic; }
+  .triptych-card-dek {
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--ink-soft);
     font-style: italic;
-    font-size: 22px;
-    line-height: 1.55;
-    color: rgba(255,255,255,0.8);
-    margin-bottom: 56px;
-    max-width: 540px;
+    font-weight: 300;
+  }
+
+  .recipe-spread {
+    padding: 200px 0;
+    background: var(--paper-deep);
+  }
+  .recipe-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .recipe-img {
+    aspect-ratio: 1/1;
+    overflow: hidden;
+  }
+  .recipe-img img { width: 100%; height: 100%; object-fit: cover; }
+  .recipe-text .story-headline { font-size: clamp(40px, 5vw, 64px); margin-bottom: 28px; }
+  .recipe-text .story-dek { font-size: 22px; margin-bottom: 40px; }
+  .recipe-list {
+    list-style: none;
+    border-top: 1px solid var(--rule);
+  }
+  .recipe-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    font-size: 18px;
+  }
+  .recipe-list li span:first-child {
+    font-style: italic;
+    color: var(--accent);
+    font-feature-settings: "tnum";
+  }
+
+  .deals {
+    padding: 200px 0 160px;
+  }
+  .deals-intro {
+    max-width: 720px;
+    margin: 0 auto 100px;
+    padding: 0 48px;
+    text-align: center;
+  }
+  .deals-list {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  .deal {
+    display: grid;
+    grid-template-columns: 280px 1fr auto;
+    gap: 56px;
+    align-items: center;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+    transition: padding 0.4s ease;
+  }
+  .deal:first-of-type { border-top: 1px solid var(--rule); }
+  .deal:hover { padding-left: 16px; }
+  .deal-img {
+    aspect-ratio: 5/3;
+    overflow: hidden;
+  }
+  .deal-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 1.2s ease;
+  }
+  .deal:hover .deal-img img { transform: scale(1.06); }
+  .deal-info {}
+  .deal-tag {
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .deal-title-text {
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .deal-title-text em { font-style: italic; }
+  .deal-info-detail {
+    font-size: 16px;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-weight: 300;
+  }
+  .deal-price {
+    font-size: 48px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1;
+    color: var(--ink);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .deal-price small {
+    font-size: 14px;
+    color: var(--ink-faint);
+    margin-left: 6px;
+    font-style: italic;
+  }
+
+  .colophon {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 200px 48px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .colophon-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .colophon-label {
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(247,245,240,0.55);
+    margin-bottom: 40px;
+    font-weight: 500;
+  }
+  .colophon-title {
+    font-size: clamp(48px, 6vw, 88px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 32px;
+  }
+  .colophon-title em { font-style: italic; }
+  .colophon-dek {
+    font-size: 24px;
+    font-style: italic;
+    line-height: 1.5;
+    color: rgba(247,245,240,0.78);
+    margin-bottom: 64px;
+    max-width: 32ch;
     margin-left: auto;
     margin-right: auto;
   }
-  .newsletter-form {
+  .colophon-form {
     display: flex;
     max-width: 480px;
     margin: 0 auto;
-    border-bottom: 1px solid rgba(255,255,255,0.4);
-    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(247,245,240,0.4);
+    padding-bottom: 6px;
   }
-  .newsletter-form input {
+  .colophon-form input {
     flex: 1;
     border: none;
     background: transparent;
     padding: 14px 0;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
+    font-family: inherit;
+    font-size: 19px;
     font-style: italic;
     color: var(--paper);
     outline: none;
   }
-  .newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
-  .newsletter-form button {
+  .colophon-form input::placeholder { color: rgba(247,245,240,0.4); }
+  .colophon-form button {
     background: transparent;
     border: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.25em;
+    font-family: inherit;
+    font-size: 13px;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--paper);
     cursor: pointer;
     padding: 14px 0 14px 32px;
+    font-weight: 500;
     transition: opacity 0.3s ease;
-    font-weight: 400;
   }
-  .newsletter-form button:hover { opacity: 0.7; }
-  .newsletter-stats {
-    display: flex;
-    justify-content: center;
-    gap: 80px;
-    margin-top: 80px;
+  .colophon-form button:hover { opacity: 0.7; }
+  .colophon-foot {
+    margin-top: 120px;
     padding-top: 48px;
-    border-top: 1px solid rgba(255,255,255,0.15);
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-  }
-  .newsletter-stats strong {
-    display: block;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 36px;
-    color: var(--paper);
-    letter-spacing: 0;
-    text-transform: none;
-    margin-bottom: 6px;
-  }
-
-  footer {
-    padding: 80px 48px 40px;
-    background: var(--paper);
-    border-top: 1px solid var(--rule);
-  }
-  .footer-inner {
-    max-width: 1440px;
-    margin: 0 auto;
-  }
-  .footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 60px;
-    padding-bottom: 60px;
-    border-bottom: 1px solid var(--rule);
-  }
-  .footer-brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
-    font-weight: 300;
-    line-height: 1.1;
-    margin-bottom: 18px;
-  }
-  .footer-brand em { font-style: italic; color: var(--accent); }
-  .footer-tag {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 17px;
-    color: var(--ink-soft);
-    line-height: 1.5;
-    max-width: 36ch;
-  }
-  .footer-col h4 {
-    font-family: 'Inter', sans-serif;
+    border-top: 1px solid rgba(247,245,240,0.15);
+    display: flex;
+    justify-content: space-between;
     font-size: 11px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 22px;
+    color: rgba(247,245,240,0.45);
     font-weight: 500;
   }
-  .footer-col ul {
+  .colophon-foot ul {
     list-style: none;
     display: flex;
-    flex-direction: column;
-    gap: 11px;
-  }
-  .footer-col a {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 17px;
-    color: var(--ink);
-    transition: color 0.2s ease;
-  }
-  .footer-col a:hover { color: var(--accent); }
-  .footer-bot {
-    padding-top: 28px;
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
+    gap: 32px;
   }
 
   .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(40px);
+    transition: opacity 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   .reveal.in-view {
     opacity: 1;
     transform: translateY(0);
   }
-  .stagger-1 { transition-delay: 0.1s; }
-  .stagger-2 { transition-delay: 0.2s; }
-  .stagger-3 { transition-delay: 0.3s; }
+  .stagger-1 { transition-delay: 0.15s; }
+  .stagger-2 { transition-delay: 0.3s; }
 
   @media (max-width: 980px) {
-    .nav-inner { padding: 14px 24px; grid-template-columns: 1fr auto 1fr; gap: 16px; }
-    .nav-left, .nav-right ul { display: none; }
-    .nav-cta { padding: 8px 14px; font-size: 10px; }
-    main { padding: 0 24px; }
-    .hero-content { padding: 32px 24px; }
-    .section-intro { grid-template-columns: 1fr; gap: 24px; padding: 80px 0 40px; }
-    .dest-grid { grid-template-columns: 1fr; gap: 40px; }
-    .dest-card,
-    .dest-card-feature,
-    .dest-card-tall,
-    .dest-card-third,
-    .dest-card-half,
-    .dest-card-twothird { grid-column: span 1; grid-row: auto; }
-    .feature-essay { grid-template-columns: 1fr; gap: 40px; padding: 60px 0; }
-    .eat-grid { grid-template-columns: 1fr; gap: 32px; }
-    .eat-feature, .recipe-side { grid-column: span 1; }
-    .deals-grid { grid-template-columns: 1fr; gap: 24px; }
-    .deals-section, .newsletter { margin: 0 -24px; padding-left: 24px; padding-right: 24px; }
-    .newsletter { padding-top: 80px; padding-bottom: 80px; }
-    .newsletter-stats { flex-direction: column; gap: 32px; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .footer-bot { flex-direction: column; gap: 8px; }
-    .hero-meta { gap: 20px; flex-wrap: wrap; }
-    .hero-credit { display: none; }
+    body { font-size: 17px; }
+    .nav { padding: 20px 24px; }
+    .cover-text { padding: 32px 28px 64px; }
+    .cover-pagenum { left: 28px; bottom: 32px; }
+    .cover-credit { display: none; }
+    .contents { padding: 100px 0 120px; }
+    .contents-inner, .story-body, .triptych-intro, .deals-list, .deals-intro { padding: 0 28px; }
+    .toc-item { grid-template-columns: 40px 1fr 60px; gap: 16px; padding: 18px 0; }
+    .toc-title { font-size: 19px; }
+    .story { padding: 80px 0; }
+    .story-fullbleed { aspect-ratio: 4/5; margin-bottom: 48px; }
+    .story-fullbleed-caption { left: 28px; bottom: 16px; }
+    .story-stats { grid-template-columns: 1fr 1fr 1fr; gap: 16px; padding: 28px 0; margin-top: 32px; }
+    .story-stat strong { font-size: 26px; }
+    .pair-section { padding: 80px 0; }
+    .pair-grid { grid-template-columns: 1fr; gap: 40px; padding: 0 28px; }
+    .triptych { padding: 100px 0 80px; }
+    .triptych-grid { grid-template-columns: 1fr; gap: 56px; padding: 0 28px; }
+    .recipe-spread { padding: 100px 0; }
+    .recipe-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 28px; }
+    .deals { padding: 100px 0 80px; }
+    .deal { grid-template-columns: 1fr; gap: 16px; padding: 28px 0; }
+    .deal-img { aspect-ratio: 16/9; }
+    .deal-price { text-align: left; font-size: 36px; }
+    .colophon { padding: 100px 28px 60px; }
+    .colophon-foot { flex-direction: column; gap: 24px; align-items: flex-start; }
+    .colophon-foot ul { flex-direction: column; gap: 8px; }
   }
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <div class="nav-inner">
-    <div class="nav-left">
-      <span class="nav-dot"></span>
-      <span>Currently in Macau · 78°F · clear night</span>
-    </div>
-    <a href="#" class="nav-brand">Angie's Travels <em>&amp;</em> Tasty Treats</a>
-    <div class="nav-right">
-      <ul>
-        <li><a href="#destinations">Destinations</a></li>
-        <li><a href="#feature">Slow travel</a></li>
-        <li><a href="#eat">Eat &amp; drink</a></li>
-        <li><a href="#deals">Deals</a></li>
-      </ul>
-      <a href="#newsletter" class="nav-cta">Subscribe</a>
-    </div>
-  </div>
+  <a href="#" class="nav-brand">Angie's <em>&amp;</em> Tasty Treats</a>
+  <span class="nav-menu">Index</span>
 </nav>
 
-<section class="hero">
-  <div class="hero-img"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Issue 14 · April 25, 2026 · Macau</div>
-    <h1 class="hero-title">From the Philippines to <em>Phuket.</em></h1>
-    <p class="hero-sub">A weekly travel and food letter, from a girl with too many passport stamps and an opinion on every airline meal.</p>
-    <div class="hero-meta">
-      <div class="hero-meta-stat"><strong>27</strong>countries</div>
-      <div class="hero-meta-stat"><strong>2,840</strong>readers</div>
-      <div class="hero-meta-stat"><strong>14</strong>letters</div>
-    </div>
+<section class="cover">
+  <div class="cover-img"></div>
+  <div class="cover-text">
+    <div class="cover-volume">Volume 14 — April 2026</div>
+    <h1 class="cover-title">From the Philippines to <em>Phuket.</em></h1>
+    <div class="cover-byline">A weekly travel and food letter</div>
   </div>
-  <div class="hero-credit">Macau Tower · Photo Angie</div>
-  <div class="scroll-cue"></div>
+  <div class="cover-pagenum">001</div>
+  <div class="cover-credit">Macau Tower · Photo Angie</div>
 </section>
 
-<main>
+<section class="contents reveal">
+  <div class="contents-inner">
+    <div class="contents-label">— Contents —</div>
 
-  <section id="destinations">
-    <div class="section-intro">
-      <div>
-        <div class="section-num">№ 01 — Destinations</div>
-        <h2 class="section-title"><em>Where</em> to go next.</h2>
+    <a href="#story-rome" class="toc-item">
+      <span class="toc-num">№ 01</span>
+      <span class="toc-title">Three days in Rome, the <em>slow</em> way</span>
+      <span class="toc-page">p. 04</span>
+    </a>
+    <a href="#story-aurora" class="toc-item">
+      <span class="toc-num">№ 02</span>
+      <span class="toc-title">Chasing the lights, without the <em>cruise</em></span>
+      <span class="toc-page">p. 12</span>
+    </a>
+    <a href="#triptych" class="toc-item">
+      <span class="toc-num">№ 03</span>
+      <span class="toc-title">Three islands, three <em>moods</em></span>
+      <span class="toc-page">p. 22</span>
+    </a>
+    <a href="#story-pastry" class="toc-item">
+      <span class="toc-num">№ 04</span>
+      <span class="toc-title">Five pastries worth a <em>flight</em></span>
+      <span class="toc-page">p. 30</span>
+    </a>
+    <a href="#recipe" class="toc-item">
+      <span class="toc-num">№ 05</span>
+      <span class="toc-title">Recipe — a <em>ten-minute</em> poke bowl</span>
+      <span class="toc-page">p. 36</span>
+    </a>
+    <a href="#deals" class="toc-item">
+      <span class="toc-num">№ 06</span>
+      <span class="toc-title">Three <em>deals</em> worth a click</span>
+      <span class="toc-page">p. 42</span>
+    </a>
+  </div>
+</section>
+
+<article id="story-rome" class="story">
+  <div class="story-fullbleed reveal">
+    <img src="images/rome.jpg" alt="Aerial view of Rome with the Colosseum at center, surrounded by the city and gardens">
+    <div class="story-fullbleed-caption">Roma · April 2026</div>
+  </div>
+  <div class="story-body">
+    <div class="story-meta reveal">
+      <div class="story-meta-left">
+        <span class="story-section">№ 01 — Destinations</span>
+        <span>Italy</span>
       </div>
-      <p class="section-desc">Six places worth the flight, with the practical detail you actually need: where to stay, how long to give it, and the meal that makes the whole trip click into place.</p>
-    </div>
-
-    <div class="destinations">
-      <div class="dest-grid">
-
-        <article class="dest-card dest-card-feature reveal">
-          <div class="dest-img-wrap dest-img-5-4">
-            <span class="dest-num">01</span>
-            <span class="dest-meta-overlay">Lazio · Italy</span>
-            <img class="dest-img" src="images/rome.jpg" alt="Aerial view of the Colosseum in Rome at golden hour">
-          </div>
-          <div class="dest-kicker">City guide · Rome</div>
-          <h3 class="dest-title">Three days in Rome, the slow way.</h3>
-          <p class="dest-dek">Skip the bus tour. The city rewards walking, and the trick is knowing which neighborhoods to put on your feet first. Trastevere at dinner. Testaccio for the market. The Colosseum at opening, when the light is still gold.</p>
-          <div class="dest-meta"><span>3 days</span><span>€110/day</span><span>April–June</span></div>
-        </article>
-
-        <article class="dest-card dest-card-tall reveal stagger-1">
-          <div class="dest-img-wrap dest-img-tall">
-            <span class="dest-num">02</span>
-            <span class="dest-meta-overlay">Cyclades · Greece</span>
-            <img class="dest-img" src="images/mykonos.jpg" alt="Whitewashed buildings and turquoise sea on a Greek island">
-          </div>
-          <div class="dest-kicker">Coast · Mykonos</div>
-          <h3 class="dest-title">Mykonos in shoulder season is a different island.</h3>
-          <p class="dest-dek">Go in May or late September. The water is still warm, the tavernas have tables again, and the sunsets do exactly what the brochure promised.</p>
-          <div class="dest-meta"><span>5 days</span><span>€120/day</span></div>
-        </article>
-
-        <article class="dest-card dest-card-third reveal">
-          <div class="dest-img-wrap dest-img-4-5">
-            <span class="dest-num">03</span>
-            <img class="dest-img" src="images/marrakech.jpg" alt="Marrakech minaret with snow-capped Atlas Mountains in background">
-          </div>
-          <div class="dest-kicker">Morocco</div>
-          <h3 class="dest-title">Marrakech, with the Atlas in view.</h3>
-          <p class="dest-dek">Three rules for the souks, two phrases that change everything, and the riad rooftop where the call to prayer hits at sunrise.</p>
-          <div class="dest-meta"><span>5 days</span><span>$80/day</span></div>
-        </article>
-
-        <article class="dest-card dest-card-third reveal stagger-1">
-          <div class="dest-img-wrap dest-img-4-5">
-            <span class="dest-num">04</span>
-            <img class="dest-img" src="images/porto.jpg" alt="Colorful houses along the Douro river in Porto, Portugal">
-          </div>
-          <div class="dest-kicker">Portugal</div>
-          <h3 class="dest-title">Porto is the Lisbon you'd actually move to.</h3>
-          <p class="dest-dek">Cheaper, slower, with a river running through it and port wine cellars on the south bank. Three days, four bottles, no regrets.</p>
-          <div class="dest-meta"><span>3 days</span><span>€85/day</span></div>
-        </article>
-
-        <article class="dest-card dest-card-third reveal stagger-2">
-          <div class="dest-img-wrap dest-img-4-5">
-            <span class="dest-num">05</span>
-            <img class="dest-img" src="images/hoian.jpg" alt="Lantern-lit street at night in Hoi An, Vietnam">
-          </div>
-          <div class="dest-kicker">Vietnam</div>
-          <h3 class="dest-title">Choose Hoi An over Hanoi.</h3>
-          <p class="dest-dek">Lantern-lit at night, beach in the morning, tailors who'll have your jacket ready in three days. The cooking class is worth it.</p>
-          <div class="dest-meta"><span>5–7 days</span><span>$50/day</span></div>
-        </article>
-
+      <div class="story-meta-right">
+        <span>p. 04</span>
       </div>
     </div>
-  </section>
-
-  <section id="feature" class="feature-essay reveal">
-    <div class="feature-essay-img">
-      <img src="images/aurora.jpg" alt="Aurora borealis over a snowy landscape in northern Norway">
-    </div>
-    <div class="feature-essay-text">
-      <div class="dest-kicker">Feature · Northern Norway</div>
-      <h2>Chasing the lights, <em>without</em> the cruise.</h2>
-      <p class="feature-essay-dek">Tromsø in February: how to read the forecast, where to stand, and why the most expensive aurora tour isn't always the right one. Plus a small list of cabins where the heating works and the wifi doesn't.</p>
-      <div class="feature-essay-meta">
-        <div><strong>4–7</strong>nights</div>
-        <div><strong>Feb–Mar</strong>peak window</div>
-        <div><strong>$1,800</strong>all-in</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="eat" class="eat-section">
-    <div class="section-intro">
-      <div>
-        <div class="section-num">№ 02 — Eat &amp; drink</div>
-        <h2 class="section-title">The <em>tasty</em> part.</h2>
-      </div>
-      <p class="section-desc">Recipes that travel well. Restaurants worth the detour. The five pastries you'll plan a flight around.</p>
-    </div>
-
-    <div class="eat-grid">
-
-      <article class="eat-feature dest-card reveal">
-        <div class="dest-img-wrap">
-          <span class="dest-num">06</span>
-          <img src="images/pastry.jpg" alt="A spread of European pastries on a wooden table">
-        </div>
-        <div class="dest-kicker">Bakeries · Five countries</div>
-        <h3 class="dest-title">Five pastry shops worth the detour, in five different countries.</h3>
-        <p class="dest-dek">A canelé in Bordeaux. A pastel de nata in Belém. A kouign-amann in Quimper. The cardamom bun that ruins all other cardamom buns. And the croissant in Paris that isn't where you think it is.</p>
-        <div class="dest-meta"><span>5 spots</span><span>5 countries</span><span>All walkable</span></div>
-      </article>
-
-      <aside class="recipe-side reveal stagger-1">
-        <div class="dest-img-wrap">
-          <img src="images/poke.jpg" alt="Salmon poke bowl with avocado, cucumber, and peanuts">
-        </div>
-        <div class="dest-kicker">Travel-day recipe</div>
-        <h3 class="dest-title">Ten-minute salmon poke bowl.</h3>
-        <p class="dest-dek">Yum yum sauce first. Sriracha after. Peanuts last. Eat with chopsticks before it cools.</p>
-        <div class="recipe-stats">
-          <div><strong>1</strong>serving</div>
-          <div><strong>10</strong>minutes</div>
-          <div><strong>$11</strong>per bowl</div>
-        </div>
-      </aside>
-
-    </div>
-  </section>
-
-  <section id="deals" class="deals-section">
-    <div class="deals-inner">
-      <div class="section-intro" style="border-bottom: none; padding-bottom: 0;">
-        <div>
-          <div class="section-num">№ 03 — Deals</div>
-          <h2 class="section-title"><em>Worth</em> a click.</h2>
-        </div>
-        <p class="section-desc">Curated each Friday. Affiliate-disclosed where applicable. Nothing here unless I'd book it myself.</p>
-      </div>
-
-      <div class="deals-grid">
-
-        <article class="deal-card reveal">
-          <div class="deal-img-wrap">
-            <img src="images/lisbon-tram.jpg" alt="Yellow tram in Lisbon">
-          </div>
-          <span class="deal-tag">Flight</span>
-          <h3 class="deal-title">Lisbon, May through September</h3>
-          <p class="deal-price">$389<small>/ rt JFK</small></p>
-          <p class="deal-desc">TAP Portugal. Midweek departures. Two checked bags included on the standard fare. Book by Sunday.</p>
-          <div class="deal-meta">Expires Sun · 4 days left</div>
-        </article>
-
-        <article class="deal-card reveal stagger-1">
-          <div class="deal-img-wrap">
-            <img src="images/como-hotel.jpg" alt="Lakeside hotel terrace at Lake Como">
-          </div>
-          <span class="deal-tag hotel">Hotel</span>
-          <h3 class="deal-title">Hotel Belmond, Lake Como</h3>
-          <p class="deal-price">$340<small>/ night midweek</small></p>
-          <p class="deal-desc">Usually north of $600. The shoulder-season rate runs through May. Lakefront view is worth the upgrade.</p>
-          <div class="deal-meta">Through May 31</div>
-        </article>
-
-        <article class="deal-card reveal stagger-2">
-          <div class="deal-img-wrap">
-            <img src="images/dining.jpg" alt="An elegant restaurant table set for dinner">
-          </div>
-          <span class="deal-tag dining">Dining</span>
-          <h3 class="deal-title">Osteria Francescana, Modena</h3>
-          <p class="deal-price">€95<small>/ lunch tasting</small></p>
-          <p class="deal-desc">The Bottura lunch menu without the dinner price. Nine courses, wine pairing for €60 more. Book three months out.</p>
-          <div class="deal-meta">14 spots/sitting</div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="newsletter" class="newsletter">
-    <div class="newsletter-inner">
-      <div class="newsletter-eyebrow">— The letter —</div>
-      <h2 class="newsletter-title">One destination, one recipe, one deal — <em>worth your time.</em></h2>
-      <p class="newsletter-dek">Friday mornings. Free. From a girl with too many passport stamps and an opinion on every airline meal.</p>
-      <form class="newsletter-form" onsubmit="event.preventDefault();">
-        <input type="email" placeholder="your@email.com" />
-        <button type="submit">Subscribe →</button>
-      </form>
-      <div class="newsletter-stats">
-        <div><strong>2,840</strong>readers</div>
-        <div><strong>14</strong>letters</div>
-        <div><strong>61%</strong>open rate</div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div>
-        <div class="footer-brand">Angie's Travels <em>&amp;</em><br>Tasty Treats</div>
-        <p class="footer-tag">A weekly letter on what's worth eating, where to go next, and the deals that don't waste your time.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Read</h4>
-        <ul>
-          <li><a href="#destinations">Destinations</a></li>
-          <li><a href="#feature">Slow travel</a></li>
-          <li><a href="#eat">Eat &amp; drink</a></li>
-          <li><a href="#deals">Deals</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Follow</h4>
-        <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Substack</a></li>
-          <li><a href="#">RSS</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>About</h4>
-        <ul>
-          <li><a href="#">About Angie</a></li>
-          <li><a href="#">Affiliate disclosures</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bot">
-      <span>© 2026 Angie's Travels &amp; Tasty Treats</span>
-      <span>Made between flights · Photos via Unsplash &amp; Angie</span>
+    <h2 class="story-headline reveal">Three days in Rome, the <em>slow</em> way.</h2>
+    <p class="story-dek reveal stagger-1">Skip the bus tour. The city rewards walking, and the trick is knowing which neighborhoods to put on your feet first.</p>
+    <p class="story-lead reveal stagger-1">Romans don't rush. The first thing the city teaches you, if you're paying attention, is that there's no point trying to see everything in three days. The trick is to give up on completeness early — like a good Italian — and choose three things to do well instead of thirty things to do badly.</p>
+    <p class="reveal stagger-2">The Colosseum at opening, when the light is still gold and the queue hasn't formed. Trastevere at dinner, in the middle of the week, at a place that doesn't have a menu in English. Testaccio Market on Saturday morning, with an empty bag and an appetite. That's the trip.</p>
+    <p class="reveal stagger-2">Everything else can wait for the next visit. There will be a next visit.</p>
+    <div class="story-stats reveal stagger-2">
+      <div class="story-stat"><strong>3 days</strong><span>recommended stay</span></div>
+      <div class="story-stat"><strong>€110</strong><span>per day, mid-range</span></div>
+      <div class="story-stat"><strong>Apr–Jun</strong><span>best window</span></div>
     </div>
   </div>
-</footer>
+</article>
+
+<section id="story-aurora" class="pair-section">
+  <div class="pair-grid">
+    <div class="pair-img reveal">
+      <img src="images/aurora.jpg" alt="Aurora borealis over a snowy landscape in northern Norway, stars visible in the deep blue sky">
+    </div>
+    <div class="pair-text reveal stagger-1">
+      <div class="story-meta">
+        <div class="story-meta-left">
+          <span class="story-section">№ 02 — Feature</span>
+          <span>Norway</span>
+        </div>
+        <div class="story-meta-right">
+          <span>p. 12</span>
+        </div>
+      </div>
+      <h2 class="story-headline">Chasing the lights, without the <em>cruise.</em></h2>
+      <p class="story-dek">Tromsø in February: how to read the forecast, where to stand, and why the most expensive aurora tour isn't always the right one.</p>
+      <p>The aurora doesn't care about your itinerary. The trick to a good lights trip is the same as the trick to a good fishing trip — show up with patience, dress correctly, and be on the water for more nights than you think you'll need. The cabin matters more than the tour.</p>
+      <div class="story-stats">
+        <div class="story-stat"><strong>4–7</strong><span>nights minimum</span></div>
+        <div class="story-stat"><strong>Feb–Mar</strong><span>peak window</span></div>
+        <div class="story-stat"><strong>$1,800</strong><span>all-in</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="triptych" class="triptych">
+  <div class="triptych-intro reveal">
+    <div class="triptych-label">№ 03 — A short list</div>
+    <h2 class="triptych-title">Three islands, three <em>moods.</em></h2>
+    <p class="triptych-dek">When the Cyclades feels too obvious, the medina too loud, and the Algarve too far — these three earn the flight.</p>
+  </div>
+  <div class="triptych-grid">
+
+    <a href="#" class="triptych-card reveal">
+      <div class="triptych-img">
+        <img src="images/mykonos.jpg" alt="Whitewashed houses by the sea in Mykonos, Greece">
+      </div>
+      <div class="triptych-num">№ 03.1 — Cyclades</div>
+      <h3 class="triptych-card-title">Mykonos in <em>shoulder</em> season.</h3>
+      <p class="triptych-card-dek">May or late September. Warm water, empty tavernas, sunsets the brochure promised.</p>
+    </a>
+
+    <a href="#" class="triptych-card reveal stagger-1">
+      <div class="triptych-img">
+        <img src="images/marrakech.jpg" alt="The Koutoubia minaret in Marrakech with snow-capped Atlas Mountains in the distance">
+      </div>
+      <div class="triptych-num">№ 03.2 — Morocco</div>
+      <h3 class="triptych-card-title">Marrakech, with the <em>Atlas</em> in view.</h3>
+      <p class="triptych-card-dek">Three rules for the souks, two phrases that change everything, one rooftop at sunrise.</p>
+    </a>
+
+    <a href="#" class="triptych-card reveal stagger-2">
+      <div class="triptych-img">
+        <img src="images/hoian.jpg" alt="Lantern-lit street at night in Hoi An, Vietnam">
+      </div>
+      <div class="triptych-num">№ 03.3 — Vietnam</div>
+      <h3 class="triptych-card-title">Hoi An over <em>Hanoi.</em></h3>
+      <p class="triptych-card-dek">Lantern-lit nights, beach mornings, tailors who deliver on time. The cooking class is worth it.</p>
+    </a>
+
+  </div>
+</section>
+
+<article id="story-pastry" class="story">
+  <div class="story-fullbleed reveal">
+    <img src="images/pastry.jpg" alt="A spread of European pastries — croissants, tarts, and rolls — on a wooden table">
+    <div class="story-fullbleed-caption">Bordeaux · December 2025</div>
+  </div>
+  <div class="story-body">
+    <div class="story-meta reveal">
+      <div class="story-meta-left">
+        <span class="story-section">№ 04 — Eat &amp; drink</span>
+        <span>Five countries</span>
+      </div>
+      <div class="story-meta-right">
+        <span>p. 30</span>
+      </div>
+    </div>
+    <h2 class="story-headline reveal">Five pastries worth a <em>flight.</em></h2>
+    <p class="story-dek reveal stagger-1">A canelé in Bordeaux. A pastel de nata in Belém. A kouign-amann in Quimper. The cardamom bun that ruins every other cardamom bun. And the croissant in Paris that isn't where you think.</p>
+    <p class="story-lead reveal stagger-1">There are two kinds of pastry travelers. The kind who plans the city around the bakery, and the kind who's lying. I'm the first kind. Most of the best ones aren't on the lists you've seen — they're four blocks off the lists, in the neighborhood the lists tell you to skip on the way to the famous one. This is that map.</p>
+    <p class="reveal stagger-2">Each of these is worth booking a flight around. Not because they're the most photogenic — though some of them are — but because they're the kind of food you can't get anywhere else, made by someone who's been making it the same way for forty years. That's the real ranking.</p>
+  </div>
+</article>
+
+<section id="recipe" class="recipe-spread">
+  <div class="recipe-inner">
+    <div class="recipe-img reveal">
+      <img src="images/poke.jpg" alt="A salmon poke bowl with avocado, cucumber, peanuts, and yum yum sauce">
+    </div>
+    <div class="recipe-text reveal stagger-1">
+      <div class="story-meta">
+        <div class="story-meta-left">
+          <span class="story-section">№ 05 — Recipe</span>
+          <span>Travel-day food</span>
+        </div>
+        <div class="story-meta-right">
+          <span>p. 36</span>
+        </div>
+      </div>
+      <h2 class="story-headline">A <em>ten-minute</em> salmon poke bowl.</h2>
+      <p class="story-dek">Yum yum sauce first. Sriracha after. Peanuts last. Eat with chopsticks before it cools.</p>
+      <ul class="recipe-list">
+        <li><span>6 oz</span><span>salmon, cubed and seared</span></li>
+        <li><span>1 cup</span><span>warm rice (sushi or jasmine)</span></li>
+        <li><span>2 cups</span><span>baby spinach or arugula</span></li>
+        <li><span>½ each</span><span>avocado, cucumber, scallion</span></li>
+        <li><span>2 tbsp</span><span>yum yum sauce, plus sriracha</span></li>
+        <li><span>To taste</span><span>peanuts, dry roasted</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="deals" class="deals">
+  <div class="deals-intro reveal">
+    <div class="triptych-label">№ 06 — Worth a click</div>
+    <h2 class="triptych-title">Three <em>deals</em> this week.</h2>
+    <p class="triptych-dek">Curated each Friday. Affiliate-disclosed where applicable. Nothing here unless I'd book it myself.</p>
+  </div>
+
+  <div class="deals-list">
+
+    <a href="#" class="deal reveal">
+      <div class="deal-img">
+        <img src="images/lisbon-tram.jpg" alt="A yellow tram on a steep cobblestone street in Lisbon">
+      </div>
+      <div class="deal-info">
+        <div class="deal-tag">Flight · TAP Portugal</div>
+        <h3 class="deal-title-text">Lisbon, <em>May through September.</em></h3>
+        <p class="deal-info-detail">Midweek departures from JFK. Two checked bags. Book by Sunday.</p>
+      </div>
+      <div class="deal-price">$389<small>/ rt</small></div>
+    </a>
+
+    <a href="#" class="deal reveal stagger-1">
+      <div class="deal-img">
+        <img src="images/como-hotel.jpg" alt="A lakeside terrace at a hotel on Lake Como, Italy">
+      </div>
+      <div class="deal-info">
+        <div class="deal-tag">Hotel · Lake Como</div>
+        <h3 class="deal-title-text">Hotel Belmond, <em>shoulder season.</em></h3>
+        <p class="deal-info-detail">Usually north of $600. Lakefront view is worth the upgrade. Through May 31.</p>
+      </div>
+      <div class="deal-price">$340<small>/ night</small></div>
+    </a>
+
+    <a href="#" class="deal reveal stagger-2">
+      <div class="deal-img">
+        <img src="images/dining.jpg" alt="A formal restaurant table set with wine glasses and white linens">
+      </div>
+      <div class="deal-info">
+        <div class="deal-tag">Dining · Modena</div>
+        <h3 class="deal-title-text">Osteria Francescana, <em>lunch tasting.</em></h3>
+        <p class="deal-info-detail">The Bottura menu without the dinner price. Nine courses. Book three months out.</p>
+      </div>
+      <div class="deal-price">€95<small>/ pp</small></div>
+    </a>
+
+  </div>
+</section>
+
+<section class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-label">— Subscribe —</div>
+    <h2 class="colophon-title">One destination, one recipe, one deal — <em>worth your time.</em></h2>
+    <p class="colophon-dek">Friday mornings. Free. From a girl with too many passport stamps and an opinion on every airline meal.</p>
+    <form class="colophon-form" onsubmit="event.preventDefault();">
+      <input type="email" placeholder="your@email.com" />
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="colophon-foot">
+      <span>© 2026 Angie's Travels &amp; Tasty Treats</span>
+      <ul>
+        <li>Instagram</li>
+        <li>Substack</li>
+        <li>Disclosures</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
 <script>
   const observer = new IntersectionObserver((entries) => {
@@ -1171,7 +955,7 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
